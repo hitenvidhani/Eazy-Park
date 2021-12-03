@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class WorkerController {
@@ -21,6 +23,14 @@ public class WorkerController {
 		return "worker";
 	}
 
+	@PostMapping("/viewWorker")
+	@ResponseBody
+	public String greetingSubmit(@RequestBody String name) throws ExecutionException, InterruptedException {
+		System.out.println(name);
+		
+		System.out.println(new WorkerService().deleteCRUD(name));
+		return "Hi";
+	}
 
 	@GetMapping("/viewWorker")
 	public String viewWorker(Model model) throws InterruptedException, ExecutionException {

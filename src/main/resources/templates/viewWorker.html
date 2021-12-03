@@ -60,6 +60,17 @@
     btn1.value = "Delete Worker";
     // btn1.onclick = (delWorker(name));
     
+    
+    var xhr = new XMLHttpRequest();
+	xhr.open("POST", "viewWorker", true);
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	btn1.addEventListener("click",
+    function() {
+	xhr.send(name);
+	},
+    false
+	);
+    
     var btn2 = document.createElement('input');
     btn2.type = "button";
     btn2.className = "btn btn-warning";
