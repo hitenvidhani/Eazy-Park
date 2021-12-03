@@ -18,13 +18,13 @@ public class CRUDService {
 
 	public String createCRUD(Greeting crud) throws ExecutionException,InterruptedException {
 		Firestore dbFirestore= com.google.firebase.cloud.FirestoreClient.getFirestore();
-		ApiFuture<WriteResult> collectionsApiFuture=dbFirestore.collection("users").document(crud.getName()).set(crud);
+		ApiFuture<WriteResult> collectionsApiFuture=dbFirestore.collection("users").document(crud.getId()).set(crud);
 		return collectionsApiFuture.get().getUpdateTime().toString();
 	}
 	
 	public String updateCRUD(Greeting crud) throws InterruptedException, ExecutionException {
 		Firestore dbFirestore=com.google.firebase.cloud.FirestoreClient.getFirestore();
-		ApiFuture<WriteResult> collectionsApiFuture=dbFirestore.collection("users").document(crud.getName()).set(crud);
+		ApiFuture<WriteResult> collectionsApiFuture=dbFirestore.collection("users").document(crud.getId()).set(crud);
 		return collectionsApiFuture.get().getUpdateTime().toString();
 	}
 	

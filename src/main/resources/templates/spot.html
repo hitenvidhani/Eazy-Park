@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Spot</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+    <form action="#" th:action="@{/spot}" th:object="${spot}" method="post">
+    	<p>Spot Name : <input type="text" th:field="*{name}" /></p>
+        <p>Location : <input type="text" th:field="*{location}" /></p>
+        <p>Number of Spots : <input type="number" th:field="*{num}" /></p>
+        <p><input type="submit" value="Log In" /> </p>
+    </form>
+</body>
+</html>

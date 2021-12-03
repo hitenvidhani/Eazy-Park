@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Spot</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>New Worker Addition Form</h1>
+    <form action="#" th:action="@{/worker}" th:object="${worker}" method="post">
+    	<p>Spot Name : <input type="text" th:field="*{name}" /></p>
+        <p>Spot : <input type="text" th:field="*{spot}" /></p>
+        <p>Slot : <input type="number" th:field="*{slot}" /></p>
+        <p>Total hours worked : <input type="number" th:field="*{hour}" /></p>
+        <p>Rating : <input type="number" th:field="*{rating}" /></p>
+        <p><input type="submit" value="Enter" /> </p>
+    </form>
+</body>
+</html>
