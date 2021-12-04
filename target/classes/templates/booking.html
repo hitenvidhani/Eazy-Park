@@ -242,6 +242,14 @@
             </div>
         </div>
     </div>
+    <script>
+        function validDate() {
+            var today = new Date().toISOString().split('T')[0];
+            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            document.getElementsByName("date")[0].setAttribute('min', today);
+            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
+        }
+    </script>
 </body>
 
 
@@ -323,14 +331,7 @@
 
 <!-- Not Working when firebase is used - check once -->
 
-<script>
-    function validDate() {
-        var today = new Date().toISOString().split('T')[0];
-        var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-        document.getElementsByName("date")[0].setAttribute('min', today);
-        document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
-    }
-</script>
+
 
 
 </html>

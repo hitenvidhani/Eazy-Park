@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
  
 @Controller
 public class UserController {
@@ -34,5 +36,14 @@ public class UserController {
 	@GetMapping("/booking")
 	public String booking(Model model){
 		return "booking";
+	}
+
+	@PostMapping("/user_login")
+	@ResponseBody
+	public String confirmSignup(@RequestBody String name) throws ExecutionException, InterruptedException {
+		System.out.println(name);
+		
+		System.out.println(new WorkerService().deleteCRUD(name));
+		return "confirmSignup";
 	}
 }
