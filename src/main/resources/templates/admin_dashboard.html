@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Admin Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      body {
+         background-image: linear-gradient(180deg, #eee, #fff 100px, #fff);
+       }
+
+       .container {
+         max-width: 960px;
+       }
+
+       .pricing-header {
+         max-width: 700px;
+       }
+
+    </style>
+
+    
+  </head>
+  <body>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check" viewBox="0 0 16 16">
+    <title>Check</title>
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </symbol>
+</svg>
+
+<div class="container py-3">
+  <header>
+  </header>
+
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-white bg-primary border-primary">
+            <h4 class="my-0 fw-normal">Parking slots</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title" id="no_spaces">No of spaces</small></h1>
+            <button type="button" class="w-100 btn btn-lg btn-primary">View Spaces</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-white bg-primary border-primary">
+            <h4 class="my-0 fw-normal">Workers</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title" id="no_worker">No of workers</h1>
+            <button type="button" class="w-100 btn btn-lg btn-primary" onclick="viewWorker.html">View Workers</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-white bg-primary border-primary">
+            <h4 class="my-0 fw-normal">Users</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title" id="no_user">No of user</h1>
+            <button type="button" class="w-100 btn btn-lg btn-primary">View Users</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </footer>
+</div>
+
+  </body>
+
+  <script type="module">
+
+   // var stdNo = 0;
+   var sp = document.getElementById('no_spaces');
+   var wo = document.getElementById('no_worker');
+   var us = document.getElementById('no_user');
+ 
+   // function AddItemsToTable(name, location, num){
+   //   let trow = document.createElement("tr");
+   //   let td1 = document.createElement('td');
+   //   let td2 = document.createElement('td');
+   //   let td3 = document.createElement('td');
+   //   let td4 = document.createElement('td');
+ 
+   //   td1.innerHTML = ++stdNo;
+   //   td2.innerHTML = name;
+   //   td3.innerHTML = location;
+   //   td4.innerHTML = num;
+     
+ 
+   //   trow.appendChild(td1);
+   //   trow.appendChild(td2);
+   //   trow.appendChild(td3);
+   //   trow.appendChild(td4);
+ 
+   //   tbody.appendChild(trow);
+ 
+   // }
+ 
+   // function AddAllItemsToTable(spots){
+   //   stdNo = 0;
+   //   tbody.innerHTML="";
+   //   spots.forEach(element => {
+   //     AddItemsToTable(element.name, element.location, element.num);
+   //   })
+   // }
+ 
+ 
+   
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+   
+   const firebaseConfig = {
+     apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
+     authDomain: "trial-6b9c1.firebaseapp.com",
+     databaseURL: "https://trial-6b9c1-default-rtdb.firebaseio.com",
+     projectId: "trial-6b9c1",
+     storageBucket: "trial-6b9c1.appspot.com",
+     messagingSenderId: "192488287455",
+     appId: "1:192488287455:web:9edc9a178b1ec23f578d6a",
+     measurementId: "G-N4RJLP15EL"
+   };
+ 
+   
+   const app = initializeApp(firebaseConfig);
+   const analytics = getAnalytics(app);
+ 
+   import {
+     getFirestore, doc, getDoc, getDocs, onSnapshot, collection
+   } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+ 
+   const db = getFirestore();
+ 
+   async function GetAllDataOnce(){
+     const querySnapshot = await getDocs(collection(db, "Spots"));
+ 
+     var spots = [];
+ 
+     querySnapshot.forEach(doc => {
+       spots.push(doc.data());
+     });
+ 
+     AddAllItemsToTable(spots);
+     console.log(spots);
+     
+     // console.log(slots);
+   }
+ 
+   function GetAllDataRealTime(){
+     const dbRef = collection(db, "Spots");
+ 
+     // onSnapshot(dbRef, (querySnapshot)=> {
+     //   var spots = [];
+     //   var count_user;
+     //   db.collection('users').get().then(snap => {
+     //   count_user = snap.size // will return the collection size
+     //   });
+ 
+     //   querySnapshot.forEach(doc => {
+     //     spots.push(doc.data());
+     //   });
+       
+     //   AddAllItemsToTable(spots);
+     // })
+
+       var count_user;
+       dbRef.get().then(snap => {
+       console.log(snap.size);
+       count_user = snap.size // will return the collection size
+      });
+     us.innerHTML = count_user;
+     console.log(count_user);
+   }
+ 
+   window.onload = GetAllDataRealTime;
+ 
+ 
+ </script>
+
+
+</html>
