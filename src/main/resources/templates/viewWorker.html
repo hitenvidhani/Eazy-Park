@@ -22,7 +22,7 @@
         <th>Hours worked</th>
         <th>Rating</th>
         <th>Delete</th>
-        <th>Update</th>
+        <!-- <th>Update</th> -->
       </thead>
       <tbody id="tbody1"></tbody>
     </table>
@@ -52,7 +52,7 @@
     let td5 = document.createElement('td');
     let td6 = document.createElement('td');
     let td7 = document.createElement('td');
-    let td8 = document.createElement('td');
+    // let td8 = document.createElement('td');
 
     var btn1 = document.createElement('input');
     btn1.type = "button";
@@ -69,21 +69,10 @@
 
     // btn1.onclick = (delWorker(name));
     
-    
-    var xhr = new XMLHttpRequest();
-	xhr.open("POST", "viewWorker", true);
-	xhr.setRequestHeader('Content-Type', 'application/json');
-	btn1.addEventListener("click",
-    function() {
-	xhr.send(name);
-	},
-    false
-	);
-    
-    var btn2 = document.createElement('input');
-    btn2.type = "button";
-    btn2.className = "btn btn-warning";
-    btn2.value = "Update Worker";
+    // var btn2 = document.createElement('input');
+    // btn2.type = "button";
+    // btn2.className = "btn btn-warning";
+    // btn2.value = "Update Worker";
     
 
     td1.innerHTML = ++stdNo;
@@ -93,7 +82,7 @@
     td5.innerHTML = hour;
     td6.innerHTML = rate;
     td7.appendChild(btn1);
-    td8.appendChild(btn2);
+    // td8.appendChild(btn2);
     
 
     trow.appendChild(td1);
@@ -103,7 +92,7 @@
     trow.appendChild(td5);
     trow.appendChild(td6);
     trow.appendChild(td7);
-    trow.appendChild(td8);
+    // trow.appendChild(td8);
 
     tbody.appendChild(trow);
 
