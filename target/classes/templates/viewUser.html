@@ -12,17 +12,17 @@
 <body>
 
   <div class="container mt-3">
-    <h1>Worker Available</h1>
+    <h1>Users</h1>
     <table class="table table-dark table-hover">
       <thead>
         <th>Sno</th>
-        <th>Name</th>
-        <th>Spot</th>
-        <th>Slot</th>
-        <th>Hours worked</th>
-        <th>Rating</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Mobile</th>
+        <th>Age</th>
+        <th>Vehicle Number</th>
+        <th>Email</th>
         <th>Delete</th>
-        <th>Update</th>
       </thead>
       <tbody id="tbody1"></tbody>
     </table>
@@ -37,13 +37,8 @@
   var stdNo = 0;
   var tbody = document.getElementById('tbody1');
 
-  // function delWorker (name){ 
-  //   return {
-  //       result: com.example.handlingformsubmission.WorkerService.deleteCRUD(name) 
-  //       }; 
-  //   }
 
-  function AddItemsToTable(name, slot, spot, hour, rate){
+  function AddItemsToTable(fname, lname, mob, age, vehNo, email){
     let trow = document.createElement("tr");
     let td1 = document.createElement('td');
     let td2 = document.createElement('td');
@@ -57,43 +52,25 @@
     var btn1 = document.createElement('input');
     btn1.type = "button";
     btn1.className = "btn btn-danger";
-    btn1.value = "Delete Worker";
+    btn1.value = "Delete User";
 
     var xhr = new XMLHttpRequest();
-	xhr.open("POST", "viewWorker", false);
+	xhr.open("POST", "viewUser", false);
 	//xhr.onload = // something
 	btn1.addEventListener("click",
     	function() {xhr.send(name)},
     	false
 	);
 
-    // btn1.onclick = (delWorker(name));
-    
-    
-    var xhr = new XMLHttpRequest();
-	xhr.open("POST", "viewWorker", true);
-	xhr.setRequestHeader('Content-Type', 'application/json');
-	btn1.addEventListener("click",
-    function() {
-	xhr.send(name);
-	},
-    false
-	);
-    
-    var btn2 = document.createElement('input');
-    btn2.type = "button";
-    btn2.className = "btn btn-warning";
-    btn2.value = "Update Worker";
-    
 
     td1.innerHTML = ++stdNo;
-    td2.innerHTML = name;
-    td3.innerHTML = spot;
-    td4.innerHTML = slot;
-    td5.innerHTML = hour;
-    td6.innerHTML = rate;
-    td7.appendChild(btn1);
-    td8.appendChild(btn2);
+    td2.innerHTML = fname;
+    td3.innerHTML = lname;
+    td4.innerHTML = mob;
+    td5.innerHTML = age;
+    td6.innerHTML = vehNo;
+    td7.innerHTML = email;
+    td8.appendChild(btn1);
     
 
     trow.appendChild(td1);
@@ -105,15 +82,17 @@
     trow.appendChild(td7);
     trow.appendChild(td8);
 
+    console.log(trow);
+
     tbody.appendChild(trow);
 
   }
 
-  function AddAllItemsToTable(worker){
+  function AddAllItemsToTable(customer){
     stdNo = 0;
     tbody.innerHTML="";
-    worker.forEach(element => {
-      AddItemsToTable(element.name, element.spot, element.slot, element.hour, element.rating);
+    customer.forEach(element => {
+      AddItemsToTable(element.firstName, element.lastName, element.mobile, element.age, element.vehicleNumber, element.email);
     })
   }
 
@@ -144,29 +123,31 @@
   const db = getFirestore();
 
   async function GetAllDataOnce(){
-    const querySnapshot = await getDocs(collection(db, "Workers"));
+    const querySnapshot = await getDocs(collection(db, "Customers"));
 
-    var worker = [];
+    var customer = [];
 
     querySnapshot.forEach(doc => {
-      worker.push(doc.data());
+      customer.push(doc.data());
     });
 
-    AddAllItemsToTable(worker);
+    AddAllItemsToTable(customer);
     // console.log(worker);
     
   }
 
   function GetAllDataRealTime(){
-    const dbRef = collection(db, "Workers");
+    const dbRef = collection(db, "Customers");
+
+    // console.log(dbRef);
 
     onSnapshot(dbRef, (querySnapshot)=> {
-      var worker = [];
+      var customer = [];
 
       querySnapshot.forEach(doc => {
-        worker.push(doc.data());
+        customer.push(doc.data());
       });
-      AddAllItemsToTable(worker);
+      AddAllItemsToTable(customer);
     })
 
   }

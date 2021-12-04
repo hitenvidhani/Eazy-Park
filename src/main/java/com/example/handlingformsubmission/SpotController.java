@@ -15,6 +15,7 @@ public class SpotController  {
 	public SpotController (SpotService crudService) {
 		this.crudService=crudService;
 	}
+	
 	@GetMapping("/spot")
 	public String spotForm(Model model) {
 		model.addAttribute("spot", new Spot());
@@ -25,7 +26,7 @@ public class SpotController  {
 	@GetMapping("/view")
 	public String viewSpot(Model model) throws InterruptedException, ExecutionException {
 		// model.addAttribute("view");
-		crudService.getAllCRUD();
+		// crudService.getAllCRUD();
 		return "view";
 	}
 
