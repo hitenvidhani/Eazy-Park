@@ -197,31 +197,44 @@
 <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
 <script type='text/javascript'></script>
 
-<body onload="validDate()">
+<body>
     <div id="booking" class="section">
         <div class="section-center">
             <div class="container">
                 <div class="row">
                     <div class="booking-form">
                         <div class="form-header">
-                            <h1>User dashboard</h1>
+                            <h1>Parking & Service Bill</h1>
                         </div>
+                        <table class="table table-striped table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Parking Cost</th>
+                                    <th scope="col">Service Cost</th>
+                                    <th scope="col">Total Cost</th>
+                                    <th scope="col">Wallet Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="park_cost"></td>
+                                    <td id="service_cost"></td>
+                                    <td id="total_cost"></td>
+                                    <td id="wallet_balance"></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <form>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <button class="submit-btn">Previous Bookings</button>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
                                     <div class="form-group ">
-                                        <!-- <button class="submit-btn">Book a new Spot</button> -->
-                                        <input class="submit-btn" type="button" onclick="location.href='/booking';" value="Book a new Spot" />
+                                        <input class="submit-btn" type="button" onclick="location.href='/booking';"
+                                            value="Confirm booking" />
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                         </form>
                     </div>
@@ -230,6 +243,32 @@
         </div>
     </div>
 </body>
+
+<script>
+    function calc() {
+        var wallet_tag = document.getElementById('wallet_balance');
+        var park_cost_tag = document.getElementById('park_cost');
+        var service_cost_tag = document.getElementById('service_cost');
+        var total_cost_tag = document.getElementById('total_cost');
+
+        var wallet = 1000;
+        var hours = 3;
+        var park_price = 20;
+        var service = 2;
+        var service_price = 10;
+        var total_cost = park_price * hours + service * service_price;
+
+        // console.log(total_cost);
+
+        wallet_tag.innerHTML = wallet;
+        park_cost_tag.innerHTML = park_price * hours;
+        service_cost_tag.innerHTML = service_price * service;
+        total_cost_tag.innerHTML = total_cost;
+    }
+
+    window.onload = calc;
+
+</script>
 
 
 

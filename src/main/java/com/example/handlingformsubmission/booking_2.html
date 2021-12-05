@@ -197,7 +197,7 @@
 <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
 <script type='text/javascript'></script>
 
-<body onload="validDate()">
+<body>
     <div id="booking" class="section">
         <div class="section-center">
             <div class="container">
@@ -222,70 +222,19 @@
                                         <span class="form-label">Date</span>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-6">
-                                <div class="form-group">
-                                    <input class="form-control" type="date" required>
-                                    <span class="form-label">Check out</span>
-                                </div>
-                            </div> -->
 
-
-                            </div>
-                            <!-- <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <select class="form-control" required>
-                                        <option value="" selected hidden>no of rooms</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                    <span class="select-arrow"></span>
-                                    <span class="form-label">Rooms</span>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <select class="form-control" required>
+                                            <option value="" selected hidden>Choose a you car size...</option>
+                                            <option>SUV / SEDAN</option>
+                                            <option>HATCHBAG</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <select class="form-control" required>
-                                        <option value="" selected hidden>no of adults</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                    <span class="select-arrow"></span>
-                                    <span class="form-label">Adults</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <select class="form-control" required>
-                                        <option value="" selected hidden>no of children</option>
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                    </select>
-                                    <span class="select-arrow"></span>
-                                    <span class="form-label">Children</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input class="form-control" type="email" placeholder="Enter your Email">
-                                    <span class="form-label">Email</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input class="form-control" type="tel" placeholder="Enter you Phone">
-                                    <span class="form-label">Phone</span>
-                                </div>
-                            </div>
-                        </div> -->
-
                             <div class="form-btn">
-                                <button class="submit-btn">Check Available Spaces</button>
+                                <button class="submit-btn" onclick="location.href='/booking_2'">Check Availability</button>
                             </div>
                         </form>
                     </div>
@@ -298,6 +247,14 @@
 
 
 <script type="module">
+
+
+    function validDate() {
+            var today = new Date().toISOString().split('T')[0];
+            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            document.getElementsByName("date")[0].setAttribute('min', today);
+            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
+        }
     var select = document.getElementById('city');
 
     function AddItemsToTable(name, location) {
@@ -356,6 +313,10 @@
 
     function GetAllDataRealTime() {
         const dbRef = collection(db, "Spots");
+        var today = new Date().toISOString().split('T')[0];
+            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            document.getElementsByName("date")[0].setAttribute('min', today);
+            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
 
         onSnapshot(dbRef, (querySnapshot) => {
             var spot = [];
@@ -374,14 +335,7 @@
 
 <!-- Not Working when firebase is used - check once -->
 
-<script>
-    function validDate() {
-        var today = new Date().toISOString().split('T')[0];
-        var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-        document.getElementsByName("date")[0].setAttribute('min', today);
-        document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
-    }
-</script>
+
 
 
 </html>

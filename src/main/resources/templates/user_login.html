@@ -209,11 +209,18 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
     import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
+    import { getAuth,onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
+    const actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be in the authorized domains list in the Firebase Console.
+      url: 'http://localhost:8080/user_login',
+      // This must be true.
+      handleCodeInApp: true,
+    };
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
@@ -230,63 +237,30 @@
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
     const auth = getAuth();
-
-/*signUp.addEventListener('click', (e) => {
-
-      var email = document.getElementById('email').value;
-      var password = document.getElementById('password').value;
-      var fname = document.getElementById('fname').value;
-      var lname = document.getElementById('lname').value;
-      var vehicleno = document.getElementById('vehicleno').value;
-      var contact = document.getElementById('contact').value;
-    createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-
-    set(ref(database, '/users' + user.uid),{
-        fname: fname,
-        lname: lname,
-        vehicleno: vehicleno,
-        contact: contact,
-        email: email,
-    })
-    alert('user created!');
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-
-    alert(errorMessage);
-    // ..
-  });
-});
-*/
-login.addEventListener('click', (e)=>{
+    login.addEventListener('click', (e)=>{
 
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-
+    var xhr = new XMLHttpRequest();
     signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-
-    const dt = new Date();
-    update(ref(database, '/users' + user.uid),{
-        last_login: dt,
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log("Hi");
+      window.location.href = "user_dashboard"
+      // xhr.open("GET", "/user_dashboard", false);
+      // xhr.send();
+      // ...
     })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert("Wrong username or password");
+    });
 
-    alert('User logged in');
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+   
 
-    alert(errorMessage);
-  });
+// });
 
 });
   </script>

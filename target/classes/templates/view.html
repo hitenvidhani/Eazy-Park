@@ -62,6 +62,9 @@
     tbody.innerHTML="";
     spots.forEach(element => {
       AddItemsToTable(element.name, element.location, element.num);
+      // console.log(element.hour);
+      console.log(element.hour[0].space_1[0]);
+      console.log(element.hour[0].space_1[2].services[1]);
     })
   }
 
@@ -101,7 +104,6 @@
     });
 
     AddAllItemsToTable(spots);
-    console.log(spots);
     
     // console.log(slots);
   }
