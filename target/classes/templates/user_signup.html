@@ -205,6 +205,15 @@
 </body>
 
 <script type="module">
+
+
+
+  
+
+
+
+
+
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
     import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
@@ -230,6 +239,7 @@
     const database = getDatabase(app);
     const auth = getAuth();
 
+    var signUp=document.getElementById("signUp");
 signUp.addEventListener('click', (e) => {
 
       var email = document.getElementById('email').value;
@@ -238,6 +248,8 @@ signUp.addEventListener('click', (e) => {
       var lname = document.getElementById('lname').value;
       var vehicleno = document.getElementById('vehicleno').value;
       var contact = document.getElementById('contact').value;
+      var xhr = new XMLHttpRequest();
+
     createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
@@ -251,6 +263,16 @@ signUp.addEventListener('click', (e) => {
         email: email,
     })
     alert('user created!');
+    xhr.open("POST", "/user_signup", false);
+	//xhr.onload = // something
+        xhr.send(JSON.stringify({
+          "email":email,
+          "lname":lname,
+          "vehNo":vehicleno,
+          "fname":fname,
+          "mobNo":contact
+      })
+      )
     // ...
   })
   .catch((error) => {
@@ -262,32 +284,6 @@ signUp.addEventListener('click', (e) => {
   });
 });
 
-login.addEventListener('click', (e)=>{
-
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-
-    signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-
-    const dt = new Date();
-    update(ref(database, '/users' + user.uid),{
-        last_login: dt,
-    })
-
-    alert('User logged in');
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-
-    alert(errorMessage);
-  });
-
-});
   </script>
 
 </html>
