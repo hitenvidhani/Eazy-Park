@@ -109,6 +109,7 @@
         opacity: 1;
         top: 10px;
     }
+
     .booking-form input[type="number"].form-control+.form-label {
         opacity: 1;
         top: 10px;
@@ -212,8 +213,6 @@
                         </div>
                         <form>
                             <div class="form-group ">
-                                <!-- <input class="form-control" type="text" placeholder="Choose a city...">
-                                <span class="form-label">Destination</span> -->
                                 <select class="form-control " id="city" required>
                                     <option value="" selected hidden>Choose a city...</option>
                                 </select>
@@ -221,76 +220,52 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control" type="date" name="date" required>
-                                        <!-- <input type="date" name="date" id="date" class="form-control input-sm " required /> -->
+                                        <input class="form-control" type="date" name="date" id="date" required>
                                         <span class="form-label">Date</span>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <!--input class="form-control" type="time" name="time"  required-->
-                                        <input type="number" class="form-control" name="time" required>
-                                        <!-- <input type="date" name="date" id="date" class="form-control input-sm " required /> -->
+                                        <input type="number" class="form-control" id="time" name="time" required>
                                         <span class="form-label">Time</span>
                                     </div>
-                                </div>                                
+                                </div>
                             </div>
-
-
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group ">
-                                        <select class="form-control" required>
+                                        <select class="form-control" id="car" required>
                                             <option value="" selected hidden>Choose a you car size...</option>
                                             <option>SUV / SEDAN</option>
-                                            <option>HATCHBAG</option>
+                                            <option>HATCHBACK</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <!--input class="form-control" type="time" name="time"  required-->
-                                        <input type="number" class="form-control" name="hours" required min="1">
-                                        <!-- <input type="date" name="date" id="date" class="form-control input-sm " required /> -->
+                                        <input type="number" class="form-control" name="hours" id="hour" required min="1">
                                         <span class="form-label">Number of Hours</span>
                                     </div>
-                                </div>                                
-                                </div>
-                                <div class="form-btn">
-                                    <button class="submit-btn" onclick="location.href='/booking_2'">Check Availability</button>
                                 </div>
                             </div>
-
-                        </form>
+                            <div class="form-btn">
+                                <button class="submit-btn" id="submit-btn" onclick="location.href='/booking_2'">Check
+                                    Availability</button>
+                            </div>
                     </div>
+
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
 
 
 <script type="module">
-
-
-    function validDate() {
-            var today = new Date().toISOString().split('T')[0];
-            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-            document.getElementsByName("date")[0].setAttribute('min', today);
-            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
-        }
-    
-    //  function validTime() {
-    //         var today = new Date()
-    //         var min_hour = today.getHours()
-    //         var min_num = Number(min_hour)
-    //         document.getElementByName("time").setAttribute('min', min_num + 1)
-    //         document.getElementByName("time").setAttribute('max', 23)
-    //         alert('working')
-    // }
 
         function maxHours() {
             var today1 = new Date()
@@ -359,22 +334,24 @@
     function GetAllDataRealTime() {
         const dbRef = collection(db, "Spots");
         var today = new Date().toISOString().split('T')[0];
-            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-            document.getElementsByName("date")[0].setAttribute('min', today);
-            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
-        
-            // var today = new Date()
-            // var min_hour = today.getHours()
-            // var min_num = Number(min_hour)
-            // document.getElementByName("time").setAttribute('min', min_num + 1)
-            // document.getElementByName("time").setAttribute('max', 23)
-            // alert('working')
+        var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+        document.getElementsByName("date")[0].setAttribute('min', today);
+        document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
+    
+        // var today = new Date()
+        // var min_hour = today.getHours()
+        // var min_num = Number(min_hour)
+        // document.getElementByName("time").setAttribute('min', min_num + 1)
+        // document.getElementByName("time").setAttribute('max', 23)
+        // alert('working')
 
-            // var today1 = new Date()
-            // var hour_now = today1.getHours()
-            // hour_now = hour_now + 1
-            // hour_max = 24 - hour_now
-            // document.getElementByName("hours").setAttribute('max', hour_max)
+        // var today1 = new Date()
+        // var hour_now = today1.getHours()
+        // hour_now = hour_now + 1
+        // hour_max = 24 - hour_now
+        // document.getElementByName("hours").setAttribute('max', hour_max)
+
+
             
         onSnapshot(dbRef, (querySnapshot) => {
             var spot = [];
@@ -384,14 +361,42 @@
             });
             AddAllItemsToTable(spot);
         })
+        
 
     }
+
+    document.getElementById('city').addEventListener('change', (e) => {
+        // log(`e.target`, e.target);
+        const select = e.target;
+        const value = select.value;
+        const desc = select.selectedOptions[0].text;
+        // console.log(desc);
+        sessionStorage.setItem('city', desc) ;
+    });
+
+    document.getElementById('car').addEventListener('change', (e) => {
+        // log(`e.target`, e.target);
+        const select = e.target;
+        const value = select.value;
+        const desc = select.selectedOptions[0].text;
+        // console.log(desc);
+        sessionStorage.setItem('car_type', desc) ;
+    });
+
+    
+    var btn = document.getElementById('submit-btn');
+
+    btn.addEventListener("click", function() {
+        sessionStorage.setItem('date', document.getElementById("date").value) ;
+        sessionStorage.setItem('time', document.getElementById("time").value) ;
+        sessionStorage.setItem('hour', document.getElementById("hour").value) ;
+    });
+
+
 
     window.onload = GetAllDataRealTime;
 </script>
 
-
-<!-- Not Working when firebase is used - check once -->
 
 
 

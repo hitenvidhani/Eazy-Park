@@ -68,6 +68,7 @@ public class UserController {
 		String vehNo;
 		String fname;
 		String lname;
+		int amount;
         try{
             ObjectMapper mapper = new ObjectMapper();
             JsonNode tree = mapper.readTree(string);
@@ -81,6 +82,8 @@ public class UserController {
             fname = node.textValue();
 			node = tree.get("lname");
             lname = node.textValue();
+			node = tree.get("amount");
+            amount = Integer.parseInt(node.textValue());
 			System.out.println(email+" "+mobNo+" "+lname+" "+fname+" "+vehNo);
 			User u=new User();
 			u.setEmail(email);
@@ -88,6 +91,7 @@ public class UserController {
 			u.setLname(lname);
 			u.setMobNo(mobNo);
 			u.setVehicleNo(vehNo);
+			u.setAmount(amount);
 			userService.createCRUD(u);
         }
         catch(Exception e){

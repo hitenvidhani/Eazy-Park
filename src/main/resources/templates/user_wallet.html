@@ -6,6 +6,10 @@
         background-image: linear-gradient(to right, #7B1FA2, #E91E63)
     }
 
+    h4 {
+        color: white
+    }
+
     .section {
         position: relative;
         height: 100vh;
@@ -109,7 +113,6 @@
         opacity: 1;
         top: 10px;
     }
-
     .booking-form input[type="number"].form-control+.form-label {
         opacity: 1;
         top: 10px;
@@ -167,6 +170,21 @@
         transition: 0.2s all;
     }
 
+    .service_checkboxes {
+        color: #ff8846;
+        font-weight: 400;
+        height: 60px;
+        padding: 10px 30px;
+        width: 100%;
+        border-radius: 40px;
+        border: none;
+        font-size: 16px;
+        letter-spacing: 1.3px;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+        margin-bottom: 20px;
+    }
+
     .booking-form .form-group.input-not-empty .form-control {
         padding-top: 16px;
     }
@@ -190,6 +208,7 @@
         letter-spacing: 1.3px;
         -webkit-transition: 0.2s all;
         transition: 0.2s all;
+        margin-top: 50px;
     }
 
     .booking-form .submit-btn:hover,
@@ -209,57 +228,59 @@
                 <div class="row">
                     <div class="booking-form">
                         <div class="form-header">
-                            <h1>Make your reservation</h1>
+                            <h1>
+                                Wallet
+                            </h1>
                         </div>
+                        <h4>Amount in Wallet:</h4>
+                        <h4>Add Money:</h4>
                         <form>
                             <div class="form-group ">
-                                <select class="form-control " id="city" required>
-                                    <option value="" selected hidden>Choose a city...</option>
-                                </select>
+                                <!-- <input class="form-control" type="text" placeholder="Choose a city...">
+                                <span class="form-label">Destination</span> -->
+                                <div class = "col-md-6">
+                                    <div class="form-group">
+                                    <!--input class="form-control" type="time" name="time"  required-->
+                                    <input type="number" class="form-control" name="hours" required min="1">
+                                    <!-- <input type="date" name="date" id="date" class="form-control input-sm " required /> -->
+                                    <span class="form-label">Enter Amount</span>
+                                    </div>                                
+                                </div>        
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" type="date" name="date" id="date" required>
-                                        <span class="form-label">Date</span>
+                                    <div class="form-btn">
+                                        <button class="submit-btn" onclick="location.href='/booking_2'">Checkout</button>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-btn">
+                                        <button class="submit-btn" onclick="location.href='/booking_2'">Homepage</button>
+                                    </div>
+                                </div>
+                                
+<!--
+    
+-->
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" id="time" name="time" required>
-                                        <span class="form-label">Time</span>
-                                    </div>
-                                </div>
+                                                                
                             </div>
+
+
+
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <select class="form-control" id="car" required>
-                                            <option value="" selected hidden>Choose a you car size...</option>
-                                            <option>SUV / SEDAN</option>
-                                            <option>HATCHBACK</option>
-                                        </select>
-                                    </div>
+                                    
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" name="hours" id="hour" required min="1">
-                                        <span class="form-label">Number of Hours</span>
-                                    </div>
                                 </div>
+                                
                             </div>
-                            <div class="form-btn">
-                                <button class="submit-btn" id="submit-btn" onclick="location.href='/booking_2'">Check
-                                    Availability</button>
-                            </div>
+
+                        </form>
                     </div>
-
-                    </form>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
 
@@ -267,13 +288,21 @@
 
 <script type="module">
 
-        function maxHours() {
-            var today1 = new Date()
-            var hour_now = today1.getHours()
-            hour_now = hour_now + 1
-            hour_max = 24 - hour_now
-            document.getElementByName("hours").setAttribute('max', hour_max)
+
+    function validDate() {
+            var today = new Date().toISOString().split('T')[0];
+            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            document.getElementsByName("date")[0].setAttribute('min', today);
+            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
         }
+    
+    //  function validTime() {
+    //         var today = new Date()
+    //         var min_hour = today.getHours()
+    //         var min_num = Number(min_hour)
+    //         document.getElementByName("time").setAttribute('min', min_num + 1)
+    //         document.getElementByName("time").setAttribute('max', 23)
+    // }
     
     var select = document.getElementById('city');
 
@@ -334,25 +363,10 @@
     function GetAllDataRealTime() {
         const dbRef = collection(db, "Spots");
         var today = new Date().toISOString().split('T')[0];
-        var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-        document.getElementsByName("date")[0].setAttribute('min', today);
-        document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
-    
-        // var today = new Date()
-        // var min_hour = today.getHours()
-        // var min_num = Number(min_hour)
-        // document.getElementByName("time").setAttribute('min', min_num + 1)
-        // document.getElementByName("time").setAttribute('max', 23)
-        // alert('working')
+            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            document.getElementsByName("date")[0].setAttribute('min', today);
+            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
 
-        // var today1 = new Date()
-        // var hour_now = today1.getHours()
-        // hour_now = hour_now + 1
-        // hour_max = 24 - hour_now
-        // document.getElementByName("hours").setAttribute('max', hour_max)
-
-
-            
         onSnapshot(dbRef, (querySnapshot) => {
             var spot = [];
 
@@ -361,42 +375,14 @@
             });
             AddAllItemsToTable(spot);
         })
-        
 
     }
-
-    document.getElementById('city').addEventListener('change', (e) => {
-        // log(`e.target`, e.target);
-        const select = e.target;
-        const value = select.value;
-        const desc = select.selectedOptions[0].text;
-        // console.log(desc);
-        sessionStorage.setItem('city', desc) ;
-    });
-
-    document.getElementById('car').addEventListener('change', (e) => {
-        // log(`e.target`, e.target);
-        const select = e.target;
-        const value = select.value;
-        const desc = select.selectedOptions[0].text;
-        // console.log(desc);
-        sessionStorage.setItem('car_type', desc) ;
-    });
-
-    
-    var btn = document.getElementById('submit-btn');
-
-    btn.addEventListener("click", function() {
-        sessionStorage.setItem('date', document.getElementById("date").value) ;
-        sessionStorage.setItem('time', document.getElementById("time").value) ;
-        sessionStorage.setItem('hour', document.getElementById("hour").value) ;
-    });
-
-
 
     window.onload = GetAllDataRealTime;
 </script>
 
+
+<!-- Not Working when firebase is used - check once -->
 
 
 
