@@ -109,6 +109,10 @@
         opacity: 1;
         top: 10px;
     }
+    .booking-form input[type="number"].form-control+.form-label {
+        opacity: 1;
+        top: 10px;
+    }
 
     .booking-form select.form-control {
         -webkit-appearance: none;
@@ -223,6 +227,20 @@
                                     </div>
                                 </div>
 
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <!--input class="form-control" type="time" name="time"  required-->
+                                        <input type="number" class="form-control" id="time" required>
+                                        <!-- <input type="date" name="date" id="date" class="form-control input-sm " required /> -->
+                                        <span class="form-label">Time</span>
+                                    </div>
+                                </div>                                
+                            </div>
+
+
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group ">
                                         <select class="form-control" required>
@@ -232,10 +250,12 @@
                                         </select>
                                     </div>
                                 </div>
+                                </div>
+                                <div class="form-btn">
+                                    <button class="submit-btn" onclick="location.href='/booking_2'">Check Availability</button>
+                                </div>
                             </div>
-                            <div class="form-btn">
-                                <button class="submit-btn" onclick="location.href='/booking_2'">Check Availability</button>
-                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -255,6 +275,15 @@
             document.getElementsByName("date")[0].setAttribute('min', today);
             document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
         }
+    
+    //  function validTime() {
+    //         var today = new Date()
+    //         var min_hour = today.getHours()
+    //         var min_num = Number(min_hour)
+    //         document.getElementByName("time").setAttribute('min', min_num + 1)
+    //         document.getElementByName("time").setAttribute('max', 23)
+    // }
+    
     var select = document.getElementById('city');
 
     function AddItemsToTable(name, location) {
@@ -317,6 +346,16 @@
             var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
             document.getElementsByName("date")[0].setAttribute('min', today);
             document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
+
+            
+            var today = new Date()
+            var min_hour = today.getHours()
+            var min_num = Number(min_hour)
+            // console.log(min_hour)
+            document.getElementById("time").setAttribute('min', min_num + 1)
+            document.getElementByName("time").setAttribute('max', 23)
+
+            console.log(document.getElementByName("time"));
 
         onSnapshot(dbRef, (querySnapshot) => {
             var spot = [];

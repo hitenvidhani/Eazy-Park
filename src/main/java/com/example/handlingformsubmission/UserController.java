@@ -45,8 +45,13 @@ public class UserController {
 	}
 
 	@GetMapping("/booking_2")
-	public String payment(Model model){
+	public String booking_2(Model model){
 		return "booking_2";
+	}
+
+	@GetMapping("/payment")
+	public String payment(Model model){
+		return "payment";
 	}
 
 	@PostMapping("/user_signup")

@@ -249,6 +249,12 @@
 <script type="module">
 
 
+    function validDate() {
+            var today = new Date().toISOString().split('T')[0];
+            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            document.getElementsByName("date")[0].setAttribute('min', today);
+            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
+        }
     var select = document.getElementById('city');
 
     function AddItemsToTable(name, location) {
@@ -307,6 +313,10 @@
 
     function GetAllDataRealTime() {
         const dbRef = collection(db, "Spots");
+        var today = new Date().toISOString().split('T')[0];
+            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            document.getElementsByName("date")[0].setAttribute('min', today);
+            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
 
         onSnapshot(dbRef, (querySnapshot) => {
             var spot = [];
