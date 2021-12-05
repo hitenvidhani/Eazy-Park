@@ -54,6 +54,11 @@ public class UserController {
 		return "payment";
 	}
 
+	@GetMapping("/confirmation")
+	public String confirmation(Model model){
+		return "confirmation";
+	}
+
 	@PostMapping("/user_signup")
 	@ResponseBody
 	public String confirmSignup(@RequestBody String string) throws ExecutionException, InterruptedException {

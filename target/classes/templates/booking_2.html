@@ -6,6 +6,10 @@
         background-image: linear-gradient(to right, #7B1FA2, #E91E63)
     }
 
+    h4 {
+        color: white
+    }
+
     .section {
         position: relative;
         height: 100vh;
@@ -166,6 +170,21 @@
         transition: 0.2s all;
     }
 
+    .service_checkboxes {
+        color: #ff8846;
+        font-weight: 400;
+        height: 60px;
+        padding: 10px 30px;
+        width: 100%;
+        border-radius: 40px;
+        border: none;
+        font-size: 16px;
+        letter-spacing: 1.3px;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+        margin-bottom: 20px;
+    }
+
     .booking-form .form-group.input-not-empty .form-control {
         padding-top: 16px;
     }
@@ -189,6 +208,7 @@
         letter-spacing: 1.3px;
         -webkit-transition: 0.2s all;
         transition: 0.2s all;
+        margin-top: 50px;
     }
 
     .booking-form .submit-btn:hover,
@@ -208,33 +228,33 @@
                 <div class="row">
                     <div class="booking-form">
                         <div class="form-header">
-                            <h1>Make your reservation</h1>
+                            <h1>Slot Availability</h1>
                         </div>
+                        <h4>Available Services:</h4>
                         <form>
                             <div class="form-group ">
                                 <!-- <input class="form-control" type="text" placeholder="Choose a city...">
                                 <span class="form-label">Destination</span> -->
-                                <select class="form-control " id="city" required>
-                                    <option value="" selected hidden>Choose a city...</option>
-                                </select>
+                                <div class="service_checkboxes">
+                                    <input type="checkbox" id="service0" name="service0" value="wash">
+                                    <label for="vehicle1"> Car Washing</label><br>
+                                    <input type="checkbox" id="service1" name="service1" value="repair">
+                                    <label for="vehicle2"> Car Inspection</label><br>
+                                    <input type="checkbox" id="service3" name="service3" value="dryclean">
+                                    <label for="vehicle3"> Dry Cleaning</label><br><br>                                    
+                                </div>
+ 
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" type="date" name="date" required>
-                                        <!-- <input type="date" name="date" id="date" class="form-control input-sm " required /> -->
-                                        <span class="form-label">Date</span>
-                                    </div>
+                                <div class="form-btn">
+                                    <button class="submit-btn" onclick="location.href='/payment'">Checkout</button>
                                 </div>
+                                
+<!--
+    
+-->
 
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <!--input class="form-control" type="time" name="time"  required-->
-                                        <input type="number" class="form-control" id="time" required>
-                                        <!-- <input type="date" name="date" id="date" class="form-control input-sm " required /> -->
-                                        <span class="form-label">Time</span>
-                                    </div>
+                                
                                 </div>                                
                             </div>
 
@@ -242,18 +262,10 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <select class="form-control" required>
-                                            <option value="" selected hidden>Choose a you car size...</option>
-                                            <option>SUV / SEDAN</option>
-                                            <option>HATCHBAG</option>
-                                        </select>
-                                    </div>
+                                    
                                 </div>
                                 </div>
-                                <div class="form-btn">
-                                    <button class="submit-btn" onclick="location.href='/booking_2'">Check Availability</button>
-                                </div>
+                                
                             </div>
 
                         </form>
@@ -346,16 +358,6 @@
             var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
             document.getElementsByName("date")[0].setAttribute('min', today);
             document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
-
-            
-            var today = new Date()
-            var min_hour = today.getHours()
-            var min_num = Number(min_hour)
-            // console.log(min_hour)
-            document.getElementById("time").setAttribute('min', min_num + 1)
-            document.getElementByName("time").setAttribute('max', 23)
-
-            console.log(document.getElementByName("time"));
 
         onSnapshot(dbRef, (querySnapshot) => {
             var spot = [];

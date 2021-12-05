@@ -6,6 +6,17 @@
         background-image: linear-gradient(to right, #7B1FA2, #E91E63)
     }
 
+    h4{
+        color: white
+    }
+
+    h5{
+        color: white
+    }
+    p{
+        color: white
+    }
+
     .section {
         position: relative;
         height: 100vh;
@@ -109,6 +120,10 @@
         opacity: 1;
         top: 10px;
     }
+    .booking-form input[type="number"].form-control+.form-label {
+        opacity: 1;
+        top: 10px;
+    }
 
     .booking-form select.form-control {
         -webkit-appearance: none;
@@ -162,6 +177,21 @@
         transition: 0.2s all;
     }
 
+    .service_checkboxes {
+        color: #ff8846;
+        font-weight: 400;
+        height: 60px;
+        padding: 10px 30px;
+        width: 100%;
+        border-radius: 40px;
+        border: none;
+        font-size: 16px;
+        letter-spacing: 1.3px;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+        margin-bottom: 20px;
+    }
+
     .booking-form .form-group.input-not-empty .form-control {
         padding-top: 16px;
     }
@@ -185,6 +215,7 @@
         letter-spacing: 1.3px;
         -webkit-transition: 0.2s all;
         transition: 0.2s all;
+        margin-top: 50px;
     }
 
     .booking-form .submit-btn:hover,
@@ -204,38 +235,37 @@
                 <div class="row">
                     <div class="booking-form">
                         <div class="form-header">
-                            <h1>Make your reservation</h1>
+                            <h1>Congratulations!</h1>
                         </div>
+                        <h4>Your slot has been confirmed!</h5>
+                        <p>Location: </p>
+                        <p>Date: </p>
+                        <p>Time: </p>
+                        <p>Number of Hours: </p>
+                        <p>Car Size: </p>
+                        <p>Amount Paid: </p>
+                        <p>Amount Available In Wallet: </p>
                         <form>
-                            <div class="form-group ">
-                                <!-- <input class="form-control" type="text" placeholder="Choose a city...">
-                                <span class="form-label">Destination</span> -->
-                                <select class="form-control " id="city" required>
-                                    <option value="" selected hidden>Choose a city...</option>
-                                </select>
-                            </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" type="date" name="date" required>
-                                        <!-- <input type="date" name="date" id="date" class="form-control input-sm " required /> -->
-                                        <span class="form-label">Date</span>
-                                    </div>
+                                <div class="form-btn">
+                                    <button class="submit-btn" onclick="location.href='/booking_2'">Homepage</button>
                                 </div>
 
+
+                                
+                            </div>                                
+                            </div>
+
+
+
+                            <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <select class="form-control" required>
-                                            <option value="" selected hidden>Choose a you car size...</option>
-                                            <option>SUV / SEDAN</option>
-                                            <option>HATCHBAG</option>
-                                        </select>
-                                    </div>
+                                    
                                 </div>
                             </div>
-                            <div class="form-btn">
-                                <button class="submit-btn" onclick="location.href='/booking_2'">Check Availability</button>
+                                
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -255,6 +285,15 @@
             document.getElementsByName("date")[0].setAttribute('min', today);
             document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
         }
+    
+    //  function validTime() {
+    //         var today = new Date()
+    //         var min_hour = today.getHours()
+    //         var min_num = Number(min_hour)
+    //         document.getElementByName("time").setAttribute('min', min_num + 1)
+    //         document.getElementByName("time").setAttribute('max', 23)
+    // }
+    
     var select = document.getElementById('city');
 
     function AddItemsToTable(name, location) {
