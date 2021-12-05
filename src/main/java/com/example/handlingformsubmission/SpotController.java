@@ -42,7 +42,7 @@ public class SpotController  {
 		s.setNum(num);
 		crudService.createCRUD(s);
 		model.addAttribute("spot", spot);
-		return "output";
+		return "view";
 	}
 
 }

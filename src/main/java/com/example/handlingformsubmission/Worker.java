@@ -12,6 +12,7 @@ public class Worker {
     private int slot;
     private int hour;
     private int rating;
+    private String password;
 
 	public String getName() {
 		return name;
@@ -52,7 +53,13 @@ public class Worker {
     public void setRating(int rating){
         this.rating = rating;
     }
-
+    public void setPassword(String password) {
+     this.password = password;
+    }
+   
+    public String getPassword() {
+     return password;
+    }
 
 }
 

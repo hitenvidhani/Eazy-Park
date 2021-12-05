@@ -198,7 +198,7 @@
     
     <button class="social-signin facebook">Log in with facebook</button>
     <button class="social-signin twitter">Log in with Twitter</button>
-    <button class="social-signin google">Log in with Google+</button>
+    <button id="signinGoogle" class="social-signin google">Log in with Google+</button>
   </div>
 
   <div class="or">OR</div>
@@ -209,7 +209,7 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
     import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
-    import { getAuth,onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
+    import { getAuth,getAdditionalUserInfo,onAuthStateChanged,signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword,GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -238,7 +238,10 @@
     const database = getDatabase(app);
     const auth = getAuth();
     login.addEventListener('click', (e)=>{
-
+    if(!auth.currentUser.emailVerified){
+      alert("Verify your email");
+    }
+    else{
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var xhr = new XMLHttpRequest();
@@ -257,12 +260,39 @@
       const errorMessage = error.message;
       alert("Wrong username or password");
     });
+  }
 
    
 
 // });
 
 });
+
+var googlebtn=document.getElementById("signinGoogle");
+const provider = new GoogleAuthProvider();
+googlebtn.addEventListener('click', (e)=>{
+  signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    console.log(result);
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    console.log(getAdditionalUserInfo(result));
+    // console.log()
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+})
   </script>
 
 </html>

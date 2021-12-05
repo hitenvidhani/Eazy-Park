@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Worker Dashboard</title>
+</head>
+<body>
+ <p>Hello Worker </p>
+ <p tag="WorkerNo"></p>
+</body>
+
+<script type="module">
+
+ var stdNo = 0; var workNo = 0;
+ var noTag = document.getElementById('WorkerNo');
+
+ function AddItemsToTable(name, slot, spot, hour, rate){
+   var xhr = new XMLHttpRequest();
+   xhr.open("POST", "viewWorker", false);
+     //xhr.onload = // something
+    btn1.addEventListener("click",
+    function() {xhr.send(name)},
+    false
+);
+
+
+   td1.innerHTML = ++stdNo;
+   td2.innerHTML = name;
+   td3.innerHTML = spot;
+   td4.innerHTML = slot;
+   td5.innerHTML = hour;
+   td6.innerHTML = rate;
+   td7.appendChild(btn1);
+   // td8.appendChild(btn2);
+   
+
+   trow.appendChild(td1);
+   trow.appendChild(td2);
+   trow.appendChild(td3);
+   trow.appendChild(td4);
+   trow.appendChild(td5);
+   trow.appendChild(td6);
+   trow.appendChild(td7);
+   // trow.appendChild(td8);
+
+   tbody.appendChild(trow);
+
+ }
+
+ function AddAllItemsToTable(worker){
+   stdNo = 0;
+   tbody.innerHTML="";
+   worker.forEach(element => {
+     AddItemsToTable(element.name, element.spot, element.slot, element.hour, element.rating);
+
+    })
+ }
+
+
+ 
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+ 
+ const firebaseConfig = {
+   apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
+   authDomain: "trial-6b9c1.firebaseapp.com",
+   databaseURL: "https://trial-6b9c1-default-rtdb.firebaseio.com",
+   projectId: "trial-6b9c1",
+   storageBucket: "trial-6b9c1.appspot.com",
+   messagingSenderId: "192488287455",
+   appId: "1:192488287455:web:9edc9a178b1ec23f578d6a",
+   measurementId: "G-N4RJLP15EL"
+ };
+
+ 
+ const app = initializeApp(firebaseConfig);
+ const analytics = getAnalytics(app);
+
+ import {
+   getFirestore, doc, getDoc, getDocs, onSnapshot, collection
+ } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+
+ const db = getFirestore();
+
+ async function GetAllDataOnce(){
+   const querySnapshot = await getDocs(collection(db, "Workers"));
+
+   var worker = [];
+
+   querySnapshot.forEach(doc => {
+     worker.push(doc.data());
+   });
+
+   AddAllItemsToTable(worker);
+   // console.log(worker);
+   
+ }
+
+ function GetAllDataRealTime(){
+   const dbRef = collection(db, "Workers");
+
+   onSnapshot(dbRef, (querySnapshot)=> {
+     var worker = [];
+
+     querySnapshot.forEach(doc => {
+       worker.push(doc.data());
+     });
+     AddAllItemsToTable(worker);
+   })
+
+ }
+
+ window.onload = GetAllDataRealTime;
+
+
+</script>
+</html>
