@@ -217,7 +217,7 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
     import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
-    import { getAuth, sendSignInLinkToEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
+    import { getAuth,onAuthStateChanged,sendEmailVerification, sendSignInLinkToEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
 
     const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
@@ -260,39 +260,68 @@
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
     // Signed in 
-    sendSignInLinkToEmail(auth, email, actionCodeSettings)
-    .then(() => {
-      // The link was successfully sent. Inform the user.
-      // Save the email locally so you don't need to ask the user for it again
-      // if they open the link on the same device.
-      const user = userCredential.user;
-
-      set(ref(database, '/users' + user.uid),{
-          fname: fname,
-          lname: lname,
-          vehicleno: vehicleno,
-          contact: contact,
-          email: email,
-      })
-      alert('user created!');
-      xhr.open("POST", "/user_signup", false);
-    //xhr.onload = // something
-          xhr.send(JSON.stringify({
-            "email":email,
-            "lname":lname,
-            "vehNo":vehicleno,
-            "fname":fname,
-            "mobNo":contact
+    // if they open the link on the same device.
+        const user = userCredential.user;
+        console.log(user);
+        sendEmailVerification(auth.currentUser)
+        .then(function() {
+          // Verification email sent.
+              set(ref(database, '/users' + user.uid),{
+              fname: fname,
+              lname: lname,
+              vehicleno: vehicleno,
+              contact: contact,
+              email: email,
+          })
+          alert('user created!');
+          xhr.open("POST", "/user_signup", false);
+          //xhr.onload = // something
+              xhr.send(JSON.stringify({
+                "email":email,
+                "lname":lname,
+                "vehNo":vehicleno,
+                "fname":fname,
+                "mobNo":contact
+            })
+            )
+          window.localStorage.setItem('emailForSignIn', emailID);
         })
-        )
-      window.localStorage.setItem('emailForSignIn', email);
-      // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ...
-  });
+        .catch(function(error) {
+          // Error occurred. Inspect error.code.
+        });
+  //   sendSignInLinkToEmail(auth, email, actionCodeSettings)
+  //   .then(() => {
+  //     // The link was successfully sent. Inform the user.
+  //     // Save the email locally so you don't need to ask the user for it again
+  //     // if they open the link on the same device.
+  //     const user = userCredential.user;
+
+  //     set(ref(database, '/users' + user.uid),{
+  //         fname: fname,
+  //         lname: lname,
+  //         vehicleno: vehicleno,
+  //         contact: contact,
+  //         email: email,
+  //     })
+  //     alert('user created!');
+  //     xhr.open("POST", "/user_signup", false);
+  //   //xhr.onload = // something
+  //         xhr.send(JSON.stringify({
+  //           "email":email,
+  //           "lname":lname,
+  //           "vehNo":vehicleno,
+  //           "fname":fname,
+  //           "mobNo":contact
+  //       })
+  //       )
+  //     window.localStorage.setItem('emailForSignIn', emailID);
+  //     // ...
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // ...
+  // });
     
     // ...
   })
@@ -304,6 +333,20 @@
     // ..
   });
 });
+
+// onAuthStateChanged(auth, (user) => {
+//         if (user.emailVerified) {
+//             // User is signed in, see docs for a list of available properties
+//             // https://firebase.google.com/docs/reference/js/firebase.User
+//             const uid = user.uid;
+//             console.log(uid);
+//             // ...
+//         } else {
+//             window.location.href = "user_signup";
+//             // User is signed out
+//             // ...
+//         }
+//         });
 
   </script>
 

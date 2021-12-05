@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\UserController.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\User.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\UserService.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\AdminController.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\SpotService.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\HandlingFormSubmissionApplication.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\Greeting.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\IndexController.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\SpotController.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\GreetingController.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\Worker.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\Spot.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\WorkerController.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\WorkerService.java
-C:\Users\Hiten\Desktop\t55\eazyPark\src\main\java\com\example\handlingformsubmission\CRUDService.java
-=======
 D:\Java_projects\Git_uploaded_project\temp\eazyPark\src\main\java\com\example\handlingformsubmission\SpotController.java
 D:\Java_projects\Git_uploaded_project\temp\eazyPark\src\main\java\com\example\handlingformsubmission\CRUDService.java
 D:\Java_projects\Git_uploaded_project\temp\eazyPark\src\main\java\com\example\handlingformsubmission\User.java
@@ -30,4 +13,3 @@ D:\Java_projects\Git_uploaded_project\temp\eazyPark\src\main\java\com\example\ha
 D:\Java_projects\Git_uploaded_project\temp\eazyPark\src\main\java\com\example\handlingformsubmission\Greeting.java
 D:\Java_projects\Git_uploaded_project\temp\eazyPark\src\main\java\com\example\handlingformsubmission\HandlingFormSubmissionApplication.java
 D:\Java_projects\Git_uploaded_project\temp\eazyPark\src\main\java\com\example\handlingformsubmission\SpotService.java
->>>>>>> 28ab0070f45ecad1077e1b31438f7a43cab10d62
