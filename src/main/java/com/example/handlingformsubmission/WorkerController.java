@@ -17,6 +17,10 @@ public class WorkerController {
 	public WorkerController (WorkerService crudService) {
 		this.crudService=crudService;
 	}
+ @GetMapping("/employee_login")
+	public String emplogin(Model model) {
+		return "employee_login";
+	}
 	@GetMapping("/worker")
 	public String workerForm(Model model) {
 		model.addAttribute("worker", new Worker());
@@ -41,7 +45,7 @@ public class WorkerController {
 
 	
 	@PostMapping("/worker")
-	public String greetingSubmit(@RequestParam("name") String name, @RequestParam("spot") String spot, @RequestParam("slot") int slot , @RequestParam("hour") int hour , @RequestParam("rating") int rating ,@ModelAttribute Worker worker, Model model) throws ExecutionException, InterruptedException {
+	public String greetingSubmit(@RequestParam("name") String name, @RequestParam("spot") String spot, @RequestParam("slot") int slot , @RequestParam("hour") int hour , @RequestParam("rating") int rating,@RequestParam("password") String password ,@ModelAttribute Worker worker, Model model) throws ExecutionException, InterruptedException {
 		
 		// System.out.println("User Name :" + id);
 		// System.out.println("Password :" + pass);
@@ -51,6 +55,7 @@ public class WorkerController {
 		w.setSlot(slot);
 		w.setHour(hour);
 		w.setRating(rating);
+  w.setPassword(password);
 		crudService.createCRUD(w);
 		// model.addAttribute("worker", worker);
 		return "viewWorker";

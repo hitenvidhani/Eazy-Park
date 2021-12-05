@@ -139,11 +139,12 @@
 <body>
 	<h1>New Worker Addition Form</h1>
     <form action="#" th:action="@{/worker}" th:object="${worker}" method="post">
-    	<p>Spot Name : <input type="text" th:field="*{name}" /></p>
+    	<p>Worker Name : <input type="text" th:field="*{name}" /></p>
         <p>Spot : <input type="text" th:field="*{spot}" /></p>
         <p>Slot : <input type="number" th:field="*{slot}" /></p>
         <p>Total hours worked : <input type="number" th:field="*{hour}" /></p>
         <p>Rating : <input type="number" th:field="*{rating}" /></p>
+        <p>Password : <input type="password" th:field="*{password}" /></p>
         <!-- <p><input type="submit" value="Add worker" /> </p> -->
         <button type="submit" class=" btn btn-lg btn-primary" >Add Worker</button>
     

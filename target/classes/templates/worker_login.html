@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head> 
-    <title>Add worker</title>
+    <title>Worker login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <style>
      /*@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);*/
    *:focus {
@@ -132,22 +133,52 @@
        text-align: center;
      }
      
+     button.social-signin {
+       margin-bottom: 20px;
+       width: 300px;
+       height: 36px;
+       border: none;
+       border-radius: 2px;
+       color: #FFF;
+       font-family: 'Roboto', sans-serif;
+       font-weight: 500;
+       transition: 0.2s ease;
+       cursor: pointer;
+     }
      
+     button.social-signin:hover,
+     button.social-signin:focus {
+       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+       transition: 0.2s ease;
+     }
+     
+     button.social-signin:active {
+       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+       transition: 0.2s ease;
+     }
+     
+     button.social-signin.facebook {
+       background: #32508E;
+     }
+     
+     button.social-signin.twitter {
+       background: #55ACEE;
+     }
+     
+     button.social-signin.google {
+       background: #DD4B39;
+     }
      
    </style>
 </head>
 <body>
-	<h1>New Worker Addition Form</h1>
-    <form action="#" th:action="@{/worker}" th:object="${worker}" method="post">
-    	<p>Worker Name : <input type="text" th:field="*{name}" /></p>
-        <p>Spot : <input type="text" th:field="*{spot}" /></p>
-        <p>Slot : <input type="number" th:field="*{slot}" /></p>
-        <p>Total hours worked : <input type="number" th:field="*{hour}" /></p>
-        <p>Rating : <input type="number" th:field="*{rating}" /></p>
-        <p>Password : <input type="password" th:field="*{password}" /></p>
-        <!-- <p><input type="submit" value="Add worker" /> </p> -->
-        <button type="submit" class=" btn btn-lg btn-primary" >Add Worker</button>
-    
+	<h1>Worker Login</h1>
+    <form >
+    	   <p>Username : <input type="text" th:field="*{name}" /></p>
+        <p>Location : <input type="text" th:field="*{location}" /></p>
+        <p>Number of Spots : <input type="number" th:field="*{num}" /></p>
+        <!-- <p><input type="submit" value="Add Space" /> </p> -->
+        <button type="submit" class=" btn btn-lg btn-primary" >Add Spaces</button>
     </form>
 </body>
 </html>
