@@ -69,6 +69,7 @@ public class UserController {
 		String fname;
 		String lname;
 		int amount;
+
         try{
             ObjectMapper mapper = new ObjectMapper();
             JsonNode tree = mapper.readTree(string);
@@ -91,7 +92,7 @@ public class UserController {
 			u.setLname(lname);
 			u.setMobNo(mobNo);
 			u.setVehicleNo(vehNo);
-			u.setAmount(amount);
+   u.setAmount(0);
 			userService.createCRUD(u);
         }
         catch(Exception e){

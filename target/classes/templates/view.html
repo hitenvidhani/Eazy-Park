@@ -20,7 +20,8 @@
           <th>Sno</th>
           <th>Name</th>
           <th>Location</th>
-          <th>Number of Slots</th>
+          <th>Number of Slots for SUV</th>
+          <th>Number of Slots for Hatchback</th>
         </thead>
         <tbody id = "tbody1"></tbody>
       </table>
@@ -35,23 +36,26 @@
   var stdNo = 0;
   var tbody = document.getElementById('tbody1');
 
-  function AddItemsToTable(name, location, num){
+  function AddItemsToTable(name, location, suv,hatch){
     let trow = document.createElement("tr");
     let td1 = document.createElement('td');
     let td2 = document.createElement('td');
     let td3 = document.createElement('td');
     let td4 = document.createElement('td');
-
+    let td5 = document.createElement('td');
+    
     td1.innerHTML = ++stdNo;
     td2.innerHTML = name;
     td3.innerHTML = location;
-    td4.innerHTML = num;
+    td4.innerHTML = suv;
+    td5.innerHTML = hatch;
     
 
     trow.appendChild(td1);
     trow.appendChild(td2);
     trow.appendChild(td3);
     trow.appendChild(td4);
+    trow.appendChild(td5);
 
     tbody.appendChild(trow);
 
@@ -61,10 +65,11 @@
     stdNo = 0;
     tbody.innerHTML="";
     spots.forEach(element => {
-      AddItemsToTable(element.name, element.location, element.num);
-      // console.log(element.hour);
-      console.log(element.hour[0].space_1[0]);
-      console.log(element.hour[0].space_1[2].services[1]);
+      AddItemsToTable(element.name, element.location, element.suv,element.hatch);
+      // // console.log(element.hour);
+      // console.log(element.hour[0].space_1[0]);
+      // console.log(element.hour[0].space_1[2].services[1]);
+      console.log(element)
     })
   }
 

@@ -32,14 +32,15 @@ public class SpotController  {
 
 	
 	@PostMapping("/spot")
-	public String greetingSubmit(@RequestParam("name") String name, @RequestParam("location") String location, @RequestParam("num") int num ,@ModelAttribute Spot spot, Model model) throws ExecutionException, InterruptedException {
+	public String greetingSubmit(@RequestParam("name") String name, @RequestParam("location") String location, @RequestParam("suv") int suv,@RequestParam("hatch") int hatch ,@ModelAttribute Spot spot, Model model) throws ExecutionException, InterruptedException {
 		
 		// System.out.println("User Name :" + id);
 		// System.out.println("Password :" + pass);
 		Spot s= new Spot();
 		s.setName(name);
 		s.setLocation(location);
-		s.setNum(num);
+		s.setSuv(suv);
+		s.setHatch(hatch);
 		crudService.createCRUD(s);
 		model.addAttribute("spot", spot);
 		return "view";

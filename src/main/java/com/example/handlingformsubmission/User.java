@@ -14,6 +14,7 @@ public class User {
 	private String email;
 	private int amount;
 
+
 	public String getFname() {
 		return fname;
 	}
@@ -53,14 +54,13 @@ public class User {
     public void setEmail(String email){
         this.email = email;
     }
-
-    public int getAmount(){
-        return amount;
+    public int getAmount() {
+     return amount;
     }
-
-    public void setAmount(int amount){
-        this.amount = amount;
-    }
+   
+    public void setAmount(int amount) {
+     this.amount = 0;
+       }
 
 
 }

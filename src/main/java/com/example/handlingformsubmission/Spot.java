@@ -9,7 +9,8 @@ public class Spot {
 
 	private String name;
 	private String location;
-    private int num;
+ private int suv,hatch;
+ private List<Map<String,Integer>> maps = new ArrayList<Map<String,Integer>>();
 
 	public String getName() {
 		return name;
@@ -27,14 +28,20 @@ public class Spot {
 		this.location = location;
     }
 
-    public int getNum(){
-        return num;
+    public int getSuv(){
+        return suv;
     }
 
-    public void setNum(int num){
-        this.num = num;
+    public void setSuv(int suv){
+        this.suv = suv;
     }
+    public int getHatch(){
+     return hatch;
+ }
 
+ public void setHatch(int hatch){
+     this.hatch = hatch;
+ }
 
 }
 

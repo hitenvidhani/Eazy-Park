@@ -204,35 +204,44 @@
 
   
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
 
   import {
     getFirestore, doc, getDoc, getDocs, onSnapshot, collection
   } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
 
-  const db = getFirestore();
+  const db =  getFirestore();
   var loc = window.location.pathname;
  var dir = loc.substring(0, loc.lastIndexOf('/'));
- var userName = ""
- var pass = ""
- var flag = 0
- login.addEventListener('click', (e) => {
+ var userName = "";
+ var pass = "";
+ var flag = 0;
+ const map1 = new Map();
+ const dbRef = collection(db, "Workers");
+ onSnapshot(dbRef, (querySnapshot)=> {
+       querySnapshot.forEach(doc => {
+       // console.log(doc.data().password)
+       map1.set(doc.data().name,doc.data().password);
+       // console.log(map1);
+      });
+    });
+  login.addEventListener('click', (e) => {
   var userName=document.getElementById('empName').value;  
   var pass=document.getElementById('password').value;  
   console.log(userName)
   console.log(pass)
-  const dbRef = collection(db, "Workers");
-
-    onSnapshot(dbRef, (querySnapshot)=> {
-      var worker = [];
-
-      querySnapshot.forEach(doc => {
-        if(pass==doc.data().password)flag=1;
-      });
+  sessionStorage.setItem("user", userName)
+  
+  
+     
+    map1.forEach((password , username , map1) => {
+     console.log(password);
+     console.log(username);
+     if(userName==username && password==pass){flag=1;console.log(username);}
     })
     if(flag==1)
-    {window.location.href = dir +'/worker_dashboard'; }else{ alert('Please check your passcode and try again')};
- })
+    {window.location.href = 'worker_dashboard'; }
+    else{ alert('Please check your passcode and try again')};
+ });
  
 
 

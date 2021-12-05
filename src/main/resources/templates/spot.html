@@ -176,7 +176,8 @@
     <form action="#" th:action="@{/spot}" th:object="${spot}" method="post">
     	   <p>Spot Name : <input type="text" th:field="*{name}" /></p>
         <p>Location : <input type="text" th:field="*{location}" /></p>
-        <p>Number of Spots : <input type="number" th:field="*{num}" /></p>
+        <p>Number of Spots for SUV : <input type="number" th:field="*{suv}" /></p>
+        <p>Number of Spots for Hatch-back : <input type="number" th:field="*{hatch}" /></p>
         <!-- <p><input type="submit" value="Add Space" /> </p> -->
         <button type="submit" class=" btn btn-lg btn-primary" >Add Spaces</button>
     </form>
