@@ -301,6 +301,7 @@ googlebtn.addEventListener('click', (e)=>{
     // The signed-in user info.
     const user = result.user;
     console.log(getAdditionalUserInfo(result));
+    location.href='/user_dashboard';
     // console.log()
     // ...
   }).catch((error) => {

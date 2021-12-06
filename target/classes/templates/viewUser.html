@@ -81,7 +81,7 @@
     trow.appendChild(td5);
     trow.appendChild(td6);
 
-    console.log(trow);
+    // console.log(trow);
 
     tbody.appendChild(trow);
 
@@ -90,8 +90,9 @@
   function AddAllItemsToTable(customer){
     stdNo = 0;
     tbody.innerHTML="";
+    console.log(customer);
     customer.forEach(element => {
-      AddItemsToTable(element.firstName, element.lastName, element.mobile, element.vehicleNumber, element.email);
+      AddItemsToTable(element.fname, element.lname, element.mobNo, element.vehNo, element.email);
     })
   }
 
@@ -121,19 +122,19 @@
 
   const db = getFirestore();
 
-  async function GetAllDataOnce(){
-    const querySnapshot = await getDocs(collection(db, "Customers"));
+  // async function GetAllDataOnce(){
+  //   const querySnapshot = await getDocs(collection(db, "Customers"));
 
-    var customer = [];
+  //   var customer = [];
 
-    querySnapshot.forEach(doc => {
-      customer.push(doc.data());
-    });
+  //   querySnapshot.forEach(doc => {
+  //     customer.push(doc.data());
+  //   });
 
-    AddAllItemsToTable(customer);
-    // console.log(worker);
+  //   AddAllItemsToTable(customer);
+  //   // console.log(worker);
     
-  }
+  // }
 
   function GetAllDataRealTime(){
     const dbRef = collection(db, "Customers");
@@ -144,8 +145,10 @@
       var customer = [];
 
       querySnapshot.forEach(doc => {
+        console.log(doc.data());
         customer.push(doc.data());
       });
+      console.log(customer);
       AddAllItemsToTable(customer);
     })
 
