@@ -62,6 +62,10 @@ public class UserController {
 	public String paym(Model model){
 		return "payment";
 	}
+	@GetMapping("/user_wallet")
+	public String user_wallet(Model model){
+		return "user_wallet";
+	}
 	@GetMapping("/confirmation")
 	public String confirmation(Model model){
 		return "confirmation";
