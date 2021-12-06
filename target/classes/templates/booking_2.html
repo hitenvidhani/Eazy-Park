@@ -229,7 +229,7 @@
                 <div class="row">
                     <div class="booking-form">
                         <div class="form-header">
-                            <h1 id="available"></h1>
+                            <h1>Slot Availability</h1>
                             <h1 id="slot"></h1>
                         </div>
                         <h4>Available Services:</h4>
@@ -245,6 +245,7 @@
 
                             </div>
                             <div class="row">
+<<<<<<< HEAD
                                     <div class="form-btn">
                                         <button class="submit-btn" id="submit-btn" onclick="location.href='/confirmation';">Checkout</button>
                                     </div>
@@ -252,6 +253,13 @@
                             </div>
                     </div>
 
+=======
+                                <div class="form-btn">
+                                        <button class="submit-btn" onclick="location.href='/payment';" >Checkout</button>
+                                </div>
+                            </div>
+                    </div>
+>>>>>>> 1f5ffaf57e6e75e6e73bb91c7af7b3a4947991b5
                 </div>
             </div>
         </div>
@@ -473,7 +481,30 @@
             });
 
             
-    
+    // customer.forEach(element => {
+    //   AddItemsToTable(element.firstName, element.lastName, element.mobile, element.vehicleNumber, element.email);
+    // })
+
+        //     onSnapshot(dbRef, (querySnapshot) => {
+        //     var spot = [];
+
+        //     querySnapshot.isEqual
+        //     forEach(doc => {
+        //         spot.push(doc.data());
+        //     });
+        //     AddAllItemsToTable(spot);
+        // })
+
+            // docRef.get().then((doc) => {
+            //     if (doc.exists) {
+            //         console.log("Document data:", doc.data());
+            //     } else {
+            //         // doc.data() will be undefined in this case
+            //         console.log("No such document!");
+            //     }
+            // }).catch((error) => {
+            //     console.log("Error getting document:", error);
+            // });
 
 
     }
