@@ -44,16 +44,24 @@ public class UserController {
 		return "booking";
 	}
 
-	@GetMapping("/booking_2")
+	@PostMapping("/booking")
 	public String booking_2(Model model){
 		return "booking_2";
 	}
 
-	@GetMapping("/payment")
+	@GetMapping("/booking_2")
+	public String booking_3(Model model){
+		return "booking_2";
+	}
+
+	@PostMapping("/booking_2")
 	public String payment(Model model){
 		return "payment";
 	}
-
+	@GetMapping("/payment")
+	public String paym(Model model){
+		return "payment";
+	}
 	@GetMapping("/confirmation")
 	public String confirmation(Model model){
 		return "confirmation";

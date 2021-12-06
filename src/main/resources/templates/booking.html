@@ -1,5 +1,6 @@
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet'>
+
 <link href='' rel='stylesheet'>
 <style>
     body {
@@ -211,7 +212,7 @@
                         <div class="form-header">
                             <h1>Make your reservation</h1>
                         </div>
-                        <form>
+                        <form method="post">
                             <div class="form-group ">
                                 <select class="form-control " id="city" required>
                                     <option value="" selected hidden>Choose a city...</option>
@@ -250,7 +251,7 @@
                                 </div>
                             </div>
                             <div class="form-btn">
-                                <button class="submit-btn" id="submit-btn" onclick="location.href='/booking_2'">Check
+                                <button class="submit-btn" id="submit-btn" >Check
                                     Availability</button>
                             </div>
                     </div>
