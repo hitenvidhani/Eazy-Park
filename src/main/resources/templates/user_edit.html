@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Login</title>
+<title>Sign Up</title>
 <style>
   /*@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);*/
 *:focus {
@@ -22,7 +22,7 @@
     position: relative;
     margin: 5% auto;
     width: 600px;
-    height: 400px;
+    height: 500px;
     background: #FFF;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -45,7 +45,7 @@
   }
   
   input[type="text"],
-  input[type="password"] {
+  input[type="password"],input[type="tel"] {
     display: block;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -61,7 +61,7 @@
   }
   
   input[type="text"]:focus,
-  input[type="password"]:focus {
+  input[type="password"]:focus,input[type="tel"]:focus {
     border-bottom: 2px solid #16a085;
     color: #16a085;
     transition: 0.2s ease;
@@ -171,6 +171,7 @@
     width: 220px;
     height: 36px;
     background-color: #16a085;
+    margin-top: 28px;
     border: none;
     border-radius: 2px;
     color: #FFF;
@@ -185,21 +186,17 @@
 
 <body>
   
-<!--<div id="login-box">
+<div id="login-box">
   <div class="left">
-    <h1 id='status'>Sign up</h1>
-
-    <input type="text" id="fname" name="fname" placeholder="first name">
-    <input type="text" id="lname" name="fname" placeholder="last name">
+    <h1 id='status'>Edit Profile</h1>
+    <!--<input type="text" id="username" name="username" placeholder="username" />-->
     <input type="text" id="vehicleno" name="vehicleno" placeholder="vehicle number">
     <input type="tel" id="contact" name="contact" placeholder="mobile no">
-    <input type="text" id="email" name="email" placeholder="E-mail" />
-    <input type="password" id="password" name="password" placeholder="Password" />
-    <input type="submit" id='signUp' name="signup_submit" value="Sign up" />
+    <input type="submit" id='signUp' name="signup_submit" value="Update" />
+    
 
-  </div>-->
-
-  <div id="login-box">
+  </div>
+  <!--<div id="login-box">
     <div class="left">
       <h1 id='status'>Login</h1>
       <input type="text" id="email" name="email" placeholder="E-mail" />
@@ -207,35 +204,33 @@
       
       <input type="submit" id='login' name="login_submit" value="Login" />
   
-    </div>
+    </div>-->
   
   <div class="right">
-    <span class="loginwith">Sign in with<br />social network</span>
-    
-    <button id='singUp' name="signUp" value="signUp" class="dur-rakho" onclick="location.href='/user_signup';">Sign Up</button>
-    <button id="signinGoogle" class="social-signin google">Log in with Google+</button>
+
   </div>
 
-  <div class="or">OR</div>
+  
 </div>
 </body>
 
 <script type="module">
-   // Import the functions you need from the SDKs you need
-   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+  
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
     import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
-    import { getAuth,signOut,getAdditionalUserInfo,onAuthStateChanged,signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword,GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
+    import { getAuth,onAuthStateChanged,sendEmailVerification, sendSignInLinkToEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
 
+    const actionCodeSettings = {
+  // URL you want to redirect back to. The domain (www.example.com) for this
+  // URL must be in the authorized domains list in the Firebase Console.
+  url: 'http://localhost:8080',
+  // This must be true.
+  handleCodeInApp: true,
+};
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
-    const actionCodeSettings = {
-      // URL you want to redirect back to. The domain (www.example.com) for this
-      // URL must be in the authorized domains list in the Firebase Console.
-      url: 'http://localhost:8080/user_login',
-      // This must be true.
-      handleCodeInApp: true,
-    };
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
@@ -252,75 +247,95 @@
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
     const auth = getAuth();
-    login.addEventListener('click', (e)=>{
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    var xhr = new XMLHttpRequest();
-    signInWithEmailAndPassword(auth, email, password)
+
+    var signUp=document.getElementById("signUp");
+    signUp.addEventListener('click', (e) => {
+
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var fname = document.getElementById('fname').value;
+      var lname = document.getElementById('lname').value;
+      var vehicleno = document.getElementById('vehicleno').value;
+      var contact = document.getElementById('contact').value;
+      var xhr = new XMLHttpRequest();
+
+    createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed in 
-      if(!auth.currentUser.emailVerified){
-        alert("Verify your email");
-        signOut(auth).then(() => {
-            console.log("LoggedOut");
+    // Signed in 
+    // if they open the link on the same device.
+        const user = userCredential.user;
+        console.log(user);
+        sendEmailVerification(auth.currentUser)
+        .then(function() {
+          // Verification email sent.
+              set(ref(database, '/users' + user.uid),{
+              fname: fname,
+              lname: lname,
+              vehicleno: vehicleno,
+              contact: contact,
+              email: email,
+          })
+          alert('user created!');
+          xhr.open("POST", "/user_signup", false);
+          //xhr.onload = // something
+              xhr.send(JSON.stringify({
+                "email":email,
+                "lname":lname,
+                "vehNo":vehicleno,
+                "fname":fname,
+                "mobNo":contact
+            })
+            )
+          window.localStorage.setItem('emailForSignIn', emailID);
         })
-        .catch((error) => {
-            // An error happened.
+        .catch(function(error) {
+          // Error occurred. Inspect error.code.
         });
-      }
-      else{
-      const user = userCredential.user;
-      console.log("Hi");
-      window.location.href = "user_dashboard"
-      }
-      // xhr.open("GET", "/user_dashboard", false);
-      // xhr.send();
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert("Wrong username or password");
-    });
+  //   sendSignInLinkToEmail(auth, email, actionCodeSettings)
+  //   .then(() => {
+  //     // The link was successfully sent. Inform the user.
+  //     // Save the email locally so you don't need to ask the user for it again
+  //     // if they open the link on the same device.
+  //     const user = userCredential.user;
 
-   
-
-// });
-
-});
-
-var googlebtn=document.getElementById("signinGoogle");
-const provider = new GoogleAuthProvider();
-googlebtn.addEventListener('click', (e)=>{
-  signInWithPopup(auth, provider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    console.log(result);
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    console.log(getAdditionalUserInfo(result));
-    if(getAdditionalUserInfo(result)["isNewUser"]) {
-      //console.log("True");
-      location.href="user_edit";
-    } else {
-      //console.log('This is false');
-      location.href="user_dashboard";
-    }
-    // console.log()
+  //     set(ref(database, '/users' + user.uid),{
+  //         fname: fname,
+  //         lname: lname,
+  //         vehicleno: vehicleno,
+  //         contact: contact,
+  //         email: email,
+  //     })
+  //     alert('user created!');
+  //     xhr.open("POST", "/user_signup", false);
+  //   //xhr.onload = // something
+  //         xhr.send(JSON.stringify({
+  //           "email":email,
+  //           "lname":lname,
+  //           "vehNo":vehicleno,
+  //           "fname":fname,
+  //           "mobNo":contact
+  //       })
+  //       )
+  //     window.localStorage.setItem('emailForSignIn', emailID);
+  //     // ...
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // ...
+  // });
+    
     // ...
-  }).catch((error) => {
-    // Handle Errors here.
+  })
+  .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
+
+    alert(errorMessage);
+    // ..
   });
-})
+});;
+
   </script>
 
 </html>

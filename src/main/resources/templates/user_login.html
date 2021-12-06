@@ -301,6 +301,13 @@ googlebtn.addEventListener('click', (e)=>{
     // The signed-in user info.
     const user = result.user;
     console.log(getAdditionalUserInfo(result));
+    if(getAdditionalUserInfo(result)["isNewUser"]) {
+      //console.log("True");
+      location.href="user_edit";
+    } else {
+      //console.log('This is false');
+      location.href="user_dashboard";
+    }
     // console.log()
     // ...
   }).catch((error) => {
