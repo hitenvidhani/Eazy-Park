@@ -64,11 +64,11 @@ public class Spot {
     ArrayList<String> inin= new ArrayList<String>();
     inin.add("");
     inin.add("");
-    inin.add("");
+    inin.add("false");
     inin.add("true");
-    inin.add("");
-    inin.add("");
-    inin.add("");
+    inin.add("false");
+    inin.add("false");
+    inin.add("false");
     inin.add("");
 
     in.put(Integer.toString(j),inin);
@@ -77,11 +77,11 @@ public class Spot {
     ArrayList<String> inin= new ArrayList<String>();
     inin.add("");
     inin.add("");
-    inin.add("");
     inin.add("false");
-    inin.add("");
-    inin.add("");
-    inin.add("");
+    inin.add("false");
+    inin.add("false");
+    inin.add("false");
+    inin.add("false");
     inin.add("");
     in.put(Integer.toString(j),inin);
    }

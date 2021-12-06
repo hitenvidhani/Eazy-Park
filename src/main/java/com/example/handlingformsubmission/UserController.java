@@ -45,12 +45,12 @@ public class UserController {
 	}
 
 	@PostMapping("/booking")
-	public String booking_2(Model model){
+	public String booking_1(Model model){
 		return "booking_2";
 	}
 
 	@GetMapping("/booking_2")
-	public String booking_3(Model model){
+	public String booking_2(Model model){
 		return "booking_2";
 	}
 
