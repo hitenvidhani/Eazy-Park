@@ -1,185 +1,395 @@
-<!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
-<head> 
-    <title>Add Spaces</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet'>
+<link href='' rel='stylesheet'>
+<style>
+    body {
+        background-image: linear-gradient(to right, #7B1FA2, #E91E63)
+    }
 
-    <style>
-     /*@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);*/
-   *:focus {
-       outline: none;
-     }
-     
-     body {
-       margin: 3vh;
-       padding: 100;
-       background: #DDD;
-       font-size: 16px;
-       color: #222;
-       font-family: 'Roboto', sans-serif;
-       font-weight: 300;
-     }
-     
-     #login-box {
-       position: relative;
-       margin: 5% auto;
-       width: 600px;
-       height: 400px;
-       background: #FFF;
-       border-radius: 2px;
-       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-     }
-     
-     .left {
-       position: absolute;
-       top: 0;
-       left: 0;
-       box-sizing: border-box;
-       padding: 40px;
-       width: 300px;
-       height: 400px;
-     }
-     
-     h1 {
-       margin: 0 0 20px 0;
-       font-weight: 300;
-       font-size: 28px;
-     }
-     
-     input[type="text"],
-     input[type="password"],input[type="number"] {
-       display: block;
-       box-sizing: border-box;
-       margin-bottom: 20px;
-       padding: 4px;
-       width: 220px;
-       height: 32px;
-       border: none;
-       border-bottom: 1px solid #AAA;
-       font-family: 'Roboto', sans-serif;
-       font-weight: 400;
-       font-size: 15px;
-       transition: 0.2s ease;
-     }
-     
-     input[type="text"]:focus,
-     input[type="password"]:focus {
-       border-bottom: 2px solid #16a085;
-       color: #16a085;
-       transition: 0.2s ease;
-     }
-     
-     input[type="submit"] {
-       margin-top: 28px;
-       width: 120px;
-       height: 32px;
-       background: #16a085;
-       border: none;
-       border-radius: 2px;
-       color: #FFF;
-       font-family: 'Roboto', sans-serif;
-       font-weight: 500;
-       text-transform: uppercase;
-       transition: 0.1s ease;
-       cursor: pointer;
-     }
-     
-     input[type="submit"]:hover,
-     input[type="submit"]:focus {
-       opacity: 0.8;
-       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-       transition: 0.1s ease;
-     }
-     
-     input[type="submit"]:active {
-       opacity: 1;
-       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-       transition: 0.1s ease;
-     }
-     
-     .or {
-       position: absolute;
-       top: 180px;
-       left: 280px;
-       width: 40px;
-       height: 40px;
-       background: #DDD;
-       border-radius: 50%;
-       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-       line-height: 40px;
-       text-align: center;
-     }
-     
-     .right {
-       position: absolute;
-       top: 0;
-       right: 0;
-       box-sizing: border-box;
-       padding: 40px;
-       width: 300px;
-       height: 400px;
-       background: url('https://goo.gl/YbktSj');
-       background-size: cover;
-       background-position: center;
-       border-radius: 0 2px 2px 0;
-     }
-     
-     .right .loginwith {
-       display: block;
-       margin-bottom: 40px;
-       font-size: 28px;
-       color: #FFF;
-       text-align: center;
-     }
-     
-     button.social-signin {
-       margin-bottom: 20px;
-       width: 300px;
-       height: 36px;
-       border: none;
-       border-radius: 2px;
-       color: #FFF;
-       font-family: 'Roboto', sans-serif;
-       font-weight: 500;
-       transition: 0.2s ease;
-       cursor: pointer;
-     }
-     
-     button.social-signin:hover,
-     button.social-signin:focus {
-       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-       transition: 0.2s ease;
-     }
-     
-     button.social-signin:active {
-       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-       transition: 0.2s ease;
-     }
-     
-     button.social-signin.facebook {
-       background: #32508E;
-     }
-     
-     button.social-signin.twitter {
-       background: #55ACEE;
-     }
-     
-     button.social-signin.google {
-       background: #DD4B39;
-     }
-     
-   </style>
-</head>
+    .section {
+        position: relative;
+        height: 100vh;
+    }
+
+    .section .section-center {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    #booking {
+        font-family: 'Raleway', sans-serif;
+    }
+
+    .booking-form {
+        position: relative;
+        max-width: 642px;
+        width: 100%;
+        margin: auto;
+        padding: 40px;
+        overflow: hidden;
+        background-image: url('https://i.imgur.com/8z1tx3u.jpg');
+        background-size: cover;
+        border-radius: 5px;
+        z-index: 20;
+    }
+
+    .booking-form::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: -1;
+    }
+
+    .booking-form .form-header {
+        text-align: center;
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .booking-form .form-header h1 {
+        font-weight: 700;
+        text-transform: capitalize;
+        font-size: 42px;
+        margin: 0px;
+        color: #fff;
+    }
+
+    .booking-form .form-group {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .booking-form .form-control {
+        background-color: rgba(255, 255, 255, 0.2);
+        height: 60px;
+        padding: 0px 25px;
+        border: none;
+        border-radius: 40px;
+        color: #fff;
+        -webkit-box-shadow: 0px 0px 0px 2px transparent;
+        box-shadow: 0px 0px 0px 2px transparent;
+        -webkit-transition: 0.2s;
+        transition: 0.2s;
+    }
+
+    .booking-form .form-control::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .booking-form .form-control:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .booking-form .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .booking-form .form-control:focus {
+        -webkit-box-shadow: 0px 0px 0px 2px #ff8846;
+        box-shadow: 0px 0px 0px 2px #ff8846;
+    }
+
+    .booking-form input[type="date"].form-control {
+        padding-top: 16px;
+    }
+
+    .booking-form input[type="date"].form-control:invalid {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .booking-form input[type="date"].form-control+.form-label {
+        opacity: 1;
+        top: 10px;
+    }
+
+    .booking-form input[type="number"].form-control+.form-label {
+        opacity: 1;
+        top: 10px;
+    }
+
+    .booking-form select.form-control {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    .booking-form select.form-control:invalid {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .booking-form select.form-control+.select-arrow {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 32px;
+        line-height: 32px;
+        height: 32px;
+        text-align: center;
+        pointer-events: none;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+    }
+
+    .booking-form select.form-control+.select-arrow:after {
+        content: '\279C';
+        display: block;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .booking-form select.form-control option {
+        color: #000;
+    }
+
+    .booking-form .form-label {
+        position: absolute;
+        top: 10px;
+        left: 25px;
+        opacity: 1;
+        color: #ff8846;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.3px;
+        height: 15px;
+        line-height: 15px;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .booking-form .form-group.input-not-empty .form-control {
+        padding-top: 16px;
+    }
+
+    .booking-form .form-group.input-not-empty .form-label .spot-input {
+        opacity: 1;
+        top: 10px;
+    }
+
+    .booking-form .submit-btn {
+        color: #fff;
+        background-color: #e35e0a;
+        font-weight: 700;
+        height: 60px;
+        padding: 10px 30px;
+        width: 100%;
+        border-radius: 40px;
+        border: none;
+        text-transform: uppercase;
+        font-size: 16px;
+        letter-spacing: 1.3px;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .booking-form .submit-btn:hover,
+    .booking-form .submit-btn:focus {
+        opacity: 0.9;
+    }
+</style>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+<script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
+<script type='text/javascript'></script>
+
 <body>
-	<h1>Add parking Spaces</h1>
-    <form action="#" th:action="@{/spot}" th:object="${spot}" method="post">
-    	   <p>Spot Name : <input type="text" th:field="*{name}" /></p>
-        <p>Location : <input type="text" th:field="*{location}" /></p>
-        <p>Number of Spots for SUV : <input type="number" th:field="*{suv}" /></p>
-        <p>Number of Spots for Hatch-back : <input type="number" th:field="*{hatch}" /></p>
-        <!-- <p><input type="submit" value="Add Space" /> </p> -->
-        <button type="submit" class=" btn btn-lg btn-primary" >Add Spaces</button>
-    </form>
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="booking-form">
+                        <div class="form-header">
+                            <h1>Add Parking Spaces</h1>
+                        </div>
+                        <form action="#" th:action="@{/spot}" th:object="${spot}" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="location" id="location" th:field="*{name}" />
+                                        <span class="form-label">Spot Name</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="location" id="location" th:field="*{location}" />
+                                        <span class="form-label">Enter New Location</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <input type="number" class="form-control" name="suv" id="suv" th:field="*{suv}">
+                                        <span class="form-label">Number of SUV Spots</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" name="hatch-back" id="hatch-back" th:field="*{hatch}">
+                                        <span class="form-label">Number of Hatch Back Spots</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn" id="submit-btn" onclick="location.href='/booking_2'">Add Spaces</button>
+                            </div>
+                    </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
+
+
+
+<script type="module">
+
+        function maxHours() {
+            var today1 = new Date()
+            var hour_now = today1.getHours()
+            hour_now = hour_now + 1
+            hour_max = 24 - hour_now
+            document.getElementByName("hours").setAttribute('max', hour_max)
+        }
+    
+    var select = document.getElementById('city');
+
+    function AddItemsToTable(name, location) {
+
+        let option = document.createElement('option');
+
+        option.innerHTML = name + ", " + location;
+
+
+        select.appendChild(option);
+
+    }
+
+    function AddAllItemsToTable(spots) {
+
+        spots.forEach(element => {
+            AddItemsToTable(element.name, element.location);
+        })
+    }
+
+
+
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+    import {
+        getAnalytics
+    } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
+        authDomain: "trial-6b9c1.firebaseapp.com",
+        databaseURL: "https://trial-6b9c1-default-rtdb.firebaseio.com",
+        projectId: "trial-6b9c1",
+        storageBucket: "trial-6b9c1.appspot.com",
+        messagingSenderId: "192488287455",
+        appId: "1:192488287455:web:9edc9a178b1ec23f578d6a",
+        measurementId: "G-N4RJLP15EL"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    import {
+        getFirestore,
+        doc,
+        getDoc,
+        getDocs,
+        onSnapshot,
+        collection
+    } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+
+    const db = getFirestore();
+
+
+    function GetAllDataRealTime() {
+        const dbRef = collection(db, "Spots");
+        var today = new Date().toISOString().split('T')[0];
+        var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+        document.getElementsByName("date")[0].setAttribute('min', today);
+        document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
+    
+        // var today = new Date()
+        // var min_hour = today.getHours()
+        // var min_num = Number(min_hour)
+        // document.getElementByName("time").setAttribute('min', min_num + 1)
+        // document.getElementByName("time").setAttribute('max', 23)
+        // alert('working')
+
+        // var today1 = new Date()
+        // var hour_now = today1.getHours()
+        // hour_now = hour_now + 1
+        // hour_max = 24 - hour_now
+        // document.getElementByName("hours").setAttribute('max', hour_max)
+
+
+            
+        onSnapshot(dbRef, (querySnapshot) => {
+            var spot = [];
+
+            querySnapshot.forEach(doc => {
+                spot.push(doc.data());
+            });
+            AddAllItemsToTable(spot);
+        })
+        
+
+    }
+
+    document.getElementById('city').addEventListener('change', (e) => {
+        // log(`e.target`, e.target);
+        const select = e.target;
+        const value = select.value;
+        const desc = select.selectedOptions[0].text;
+        // console.log(desc);
+        sessionStorage.setItem('city', desc) ;
+    });
+
+    document.getElementById('car').addEventListener('change', (e) => {
+        // log(`e.target`, e.target);
+        const select = e.target;
+        const value = select.value;
+        const desc = select.selectedOptions[0].text;
+        // console.log(desc);
+        sessionStorage.setItem('car_type', desc) ;
+    });
+
+    
+    var btn = document.getElementById('submit-btn');
+
+    btn.addEventListener("click", function() {
+        sessionStorage.setItem('date', document.getElementById("date").value) ;
+        sessionStorage.setItem('time', document.getElementById("time").value) ;
+        sessionStorage.setItem('hour', document.getElementById("hour").value) ;
+    });
+
+
+
+    window.onload = GetAllDataRealTime;
+</script>
+
+
+
+
+
 </html>
