@@ -12,5 +12,4 @@ com\example\handlingformsubmission\CRUDService.class
 com\example\handlingformsubmission\UserController.class
 com\example\handlingformsubmission\WorkerService.class
 com\example\handlingformsubmission\SpotController.class
-test.class
 com\example\handlingformsubmission\Greeting.class

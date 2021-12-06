@@ -37,7 +37,6 @@
         <th>Mobile</th>
         <th>Vehicle Number</th>
         <th>Email</th>
-        <th>Delete</th>
       </thead>
       <tbody id="tbody1"></tbody>
     </table>
@@ -61,20 +60,10 @@
     let td4 = document.createElement('td');
     let td5 = document.createElement('td');
     let td6 = document.createElement('td');
-    let td7 = document.createElement('td');
-
-    var btn1 = document.createElement('input');
-    btn1.type = "button";
-    btn1.className = "btn btn-danger";
-    btn1.value = "Delete User";
 
     var xhr = new XMLHttpRequest();
 	xhr.open("POST", "viewUser", false);
 	//xhr.onload = // something
-	btn1.addEventListener("click",
-    	function() {xhr.send(name)},
-    	false
-	);
 
 
     td1.innerHTML = ++stdNo;
@@ -83,7 +72,6 @@
     td4.innerHTML = mob;
     td5.innerHTML = vehNo;
     td6.innerHTML = email;
-    td7.appendChild(btn1);
     
 
     trow.appendChild(td1);
@@ -92,7 +80,6 @@
     trow.appendChild(td4);
     trow.appendChild(td5);
     trow.appendChild(td6);
-    trow.appendChild(td7);
 
     console.log(trow);
 
