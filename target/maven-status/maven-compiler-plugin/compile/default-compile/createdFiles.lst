@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 com\example\handlingformsubmission\AdminController.class
 com\example\handlingformsubmission\IndexController.class
 com\example\handlingformsubmission\HandlingFormSubmissionApplication.class
@@ -15,4 +13,3 @@ com\example\handlingformsubmission\UserController.class
 com\example\handlingformsubmission\WorkerService.class
 com\example\handlingformsubmission\SpotController.class
 com\example\handlingformsubmission\Greeting.class
->>>>>>> 9c38b3ab922a40e4d55751651f54f22dc2fecd22
