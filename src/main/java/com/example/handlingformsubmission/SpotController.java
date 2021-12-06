@@ -41,7 +41,9 @@ public class SpotController  {
 		s.setLocation(location);
 		s.setSuv(suv);
 		s.setHatch(hatch);
+  s.setMap();
 		crudService.createCRUD(s);
+  System.out.println(s);
 		model.addAttribute("spot", spot);
 		return "view";
 	}
