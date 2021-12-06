@@ -238,13 +238,13 @@
                             <h1>Congratulations!</h1>
                         </div>
                         <h4>Your slot has been confirmed!</h5>
-                        <p>Location: </p>
-                        <p>Date: </p>
-                        <p>Time: </p>
-                        <p>Number of Hours: </p>
-                        <p>Car Size: </p>
-                        <p>Amount Paid: </p>
-                        <p>Amount Available In Wallet: </p>
+                        <p id="loc">Location: </p>
+                        <p id="date">Date: </p>
+                        <p id="time">Time: </p>
+                        <p id="hour">Number of Hours: </p>
+                        <p id="car_type">Car Size: </p>
+                        <p id="amount">Amount Paid: </p>
+                        <p id="wallet">Amount Available In Wallet: </p>
                             <div class="row">
                                 <div class="form-btn">
                                     <button class="submit-btn" onclick="location.href='/user_dashboard'">Homepage</button>
@@ -268,42 +268,6 @@
 
 
 <script type="module">
-
-
-    function validDate() {
-            var today = new Date().toISOString().split('T')[0];
-            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-            document.getElementsByName("date")[0].setAttribute('min', today);
-            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
-        }
-    
-    //  function validTime() {
-    //         var today = new Date()
-    //         var min_hour = today.getHours()
-    //         var min_num = Number(min_hour)
-    //         document.getElementByName("time").setAttribute('min', min_num + 1)
-    //         document.getElementByName("time").setAttribute('max', 23)
-    // }
-    
-    var select = document.getElementById('city');
-
-    function AddItemsToTable(name, location) {
-
-        let option = document.createElement('option');
-
-        option.innerHTML = name + ", " + location;
-
-
-        select.appendChild(option);
-
-    }
-
-    function AddAllItemsToTable(spots) {
-
-        spots.forEach(element => {
-            AddItemsToTable(element.name, element.location);
-        })
-    }
 
 
 
@@ -344,10 +308,6 @@
     function GetAllDataRealTime() {
         const dbRef = collection(db, "Spots");
 
-        var today = new Date().toISOString().split('T')[0];
-            var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-            document.getElementsByName("date")[0].setAttribute('min', today);
-            document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
 
         onSnapshot(dbRef, (querySnapshot) => {
             var spot = [];
@@ -355,19 +315,22 @@
             querySnapshot.forEach(doc => {
                 spot.push(doc.data());
             });
-            AddAllItemsToTable(spot);
         })
-        
+
+        document.getElementById("loc").innerHTML = "Location: " + sessionStorage.getItem('city');
+        document.getElementById("date").innerHTML = "Date: " + sessionStorage.getItem('date');
+        document.getElementById("time").innerHTML = "Time: " + sessionStorage.getItem('time');
+        document.getElementById("hour").innerHTML = "Hours: " + sessionStorage.getItem('hour');
+        document.getElementById("car_type").innerHTML = "Car Size: " + sessionStorage.getItem('car_type');
+        document.getElementById("amount").innerHTML = "Amount Paid: " + sessionStorage.getItem('amount');
+        document.getElementById("wallet").innerHTML = "Amount Available In Wallet: " + sessionStorage.getItem('wallet');
+
+
 
     }
 
     window.onload = GetAllDataRealTime;
 </script>
-
-
-<!-- Not Working when firebase is used - check once -->
-
-
 
 
 </html>

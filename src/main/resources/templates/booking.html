@@ -334,25 +334,11 @@
 
     function GetAllDataRealTime() {
         const dbRef = collection(db, "Spots");
-        var today = new Date().toISOString().split('T')[0];
-        var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+        var today= new Date(new Date().getTime() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+        var nextWeekDate = new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
         document.getElementsByName("date")[0].setAttribute('min', today);
         document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
     
-        // var today = new Date()
-        // var min_hour = today.getHours()
-        // var min_num = Number(min_hour)
-        // document.getElementByName("time").setAttribute('min', min_num + 1)
-        // document.getElementByName("time").setAttribute('max', 23)
-        // alert('working')
-
-        // var today1 = new Date()
-        // var hour_now = today1.getHours()
-        // hour_now = hour_now + 1
-        // hour_max = 24 - hour_now
-        // document.getElementByName("hours").setAttribute('max', hour_max)
-
-
             
         onSnapshot(dbRef, (querySnapshot) => {
             var spot = [];
