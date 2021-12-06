@@ -235,9 +235,9 @@
                         <h4>Available Services:</h4>
                             <div class="form-group ">
                                 <div class="service_checkboxes">
-                                    <input type="checkbox" id="service1" name="service1" value="wash">
+                                    <input type="checkbox" id="service0" name="service0" value="wash">
                                     <label for="vehicle1"> Car Washing</label><br>
-                                    <input type="checkbox" id="service2" name="service2" value="repair">
+                                    <input type="checkbox" id="service1" name="service1" value="repair">
                                     <label for="vehicle2"> Car Inspection</label><br>
                                     <input type="checkbox" id="service3" name="service3" value="dryclean">
                                     <label for="vehicle3"> Dry Cleaning</label><br><br>
@@ -245,21 +245,11 @@
 
                             </div>
                             <div class="row">
-<<<<<<< HEAD
-                                    <div class="form-btn">
-                                        <button class="submit-btn" id="submit-btn" onclick="location.href='/confirmation';">Checkout</button>
-                                    </div>
-
-                            </div>
-                    </div>
-
-=======
                                 <div class="form-btn">
                                         <button class="submit-btn" onclick="location.href='/payment';" >Checkout</button>
                                 </div>
                             </div>
                     </div>
->>>>>>> 1f5ffaf57e6e75e6e73bb91c7af7b3a4947991b5
                 </div>
             </div>
         </div>
@@ -328,158 +318,36 @@
 
     const db = getFirestore();
 
-    
-    var availabile_space = -1;
-
     // console.log(sessionStorage.getItem('date'));
 
 
     async function GetAllDataRealTime() {
-        
-            var availabile;
-        const dbRef = collection(db, "Spots");
-        onSnapshot(dbRef, (querySnapshot)=> {
-              querySnapshot.forEach(doc => {
-              // console.log(doc.data().password)
-              if(doc.data().name == sessionStorage.getItem('city').split(',')[0]){
+    //     const dbRef = collection(db, "Spots");
 
-                    var time = parseInt(sessionStorage.getItem('time'));
-                    var hour = parseInt(sessionStorage.getItem('hour'));
-                    var final_hour = time + hour;
-                    var emails = []
-                    var occupancy_status = []
+    //     onSnapshot(dbRef, (querySnapshot) => {
+    //         var spot = [];
 
-                    // console.log(Object.keys(doc.data().hour[time]));
+    //         querySnapshot.forEach(doc => {
+    //             spot.push(doc.data());
+    //         });
+    //         AddAllItemsToTable(spot);
+    //     })
 
-                    for(var k in (doc.data().hour[time])){
-                            // console.log(doc.data().hour[time])
-                        // console.log(typeof(k));
-                        // console.log(`${k}: ${(doc.data().hour[time])[k]}`);
-                        var space = (`${(doc.data().hour[time])[k]}`);
+            // db.collection("Spots").doc(sessionStorage.getItem('city').split(',')[0])
+            // .get()
+            // .then((querySnapshot) => {
+            //     querySnapshot.forEach((doc) => {
+            //         // doc.data() is never undefined for query doc snapshots
+            //         console.log(doc.data(), " => ", doc.data());
+            //     });
+            // })
+            // .catch((error) => {
+            //     console.log("Error getting documents: ", error);
+            // }); 
+            
+            var docRef = await doc(db , "Spots" , sessionStorage.getItem('city').split(',')[0]);
 
-                        var occupancy = space.split(",",3)[2];
-                        // console.log(occupancy)
-                        occupancy_status.push(occupancy);
-                        
-                        // var email = (space.split(",",1))[0];
-                        // // console.log(email)
-                        // emails.push(email)
-
-                        // var worker = space.split(",",2)[1];
-                        // // console.log(worker)
-
-                        // var suv = space.split(",",4)[3];
-                        // // console.log(suv);
-                        
-                        // var service1 = space.split(",",5)[4];
-                        // var service2 = space.split(",",6)[5];
-                        // var service3 = space.split(",",7)[6];
-                        // console.log(service1 , service2 , service3)
-                        
-                    }
-
-                    var suv_no = doc.data().suv;
-                    var hatch_no = doc.data().hatch;
-
-                    var flag = 0;
-                    
-                    var temp = time;
-
-
-                //SUV / SEDAN
-
-                if(sessionStorage.getItem('car_type') == "SUV / SEDAN"){
-
-
-                    for(var i = suv_no; i<suv_no+hatch_no ;i++){
-                        
-                        time = temp;
-
-                        // console.log(occupancy_status[i])
-                        if(occupancy_status[i] == "false"){
-                            flag = 1;                            
-                            time++;
-
-                            for(; time >= 24 || time == final_hour; time++){
-                                var key = Object.keys(doc.data().hour[time])[i];
-                                if(!((doc.data().hour[time])[key])){
-                                    flag =0;
-                                    break;
-                                }
-                            }
-                            if(flag == 1){
-                                availabile_space = suv_no+hatch_no - i;
-
-                                console.log(availabile_space);
-                                
-                                document.getElementById('available').innerHTML = ("Slot Availabile : Space No. " + availabile_space); 
-                                break;
-
-                            }
-                        }
-                    }
-                    if(flag == 0){
-                        document.getElementById('available').innerHTML = "Slot : Not Available ";                                
-                    }
-                }
-                    
-                // HATCHBACK 
-
-                if(sessionStorage.getItem('car_type') == "HATCHBACK"){
-
-
-                    for(var i = 0; i<hatch_no ;i++){
-                        
-                        time = temp;
-
-                        // console.log(occupancy_status[i])
-                        if(occupancy_status[i] == "false"){
-                            flag = 1;                            
-                            time++;
-
-                            for(; time >= 24 || time == final_hour; time++){
-                                var key = Object.keys(doc.data().hour[time])[i];
-                                if(!((doc.data().hour[time])[key])){
-                                    flag =0;
-                                    break;
-                                }
-                            }
-                            if(flag == 1){
-                                availabile_space = suv_no + i;
-
-                                console.log(availabile_space);
-                                
-                                document.getElementById('available').innerHTML = ("Slot Availabile : Space No. " + availabile_space); 
-                                break;
-
-                            }
-                        }
-                    }
-                    if(flag == 0){
-                        document.getElementById('available').innerHTML = "Slot : Not Available ";                                
-                    }
-                }
-                    
-                
-            }
-
-
-            //    console.log(doc.data().suv);
-            //    console.log(doc.data().hour[0].space_1[0]);
-              
-             });
-           });
-    
-            var btn = document.getElementById('submit-btn');
-
-            btn.addEventListener("click", function() {
-                sessionStorage.setItem('space_choosen', availabile_space) ;
-                sessionStorage.setItem('service1' , document.getElementById('service1').checked) ;
-                sessionStorage.setItem('service2' , document.getElementById('service2').checked) ;
-                sessionStorage.setItem('service3' , document.getElementById('service3').checked) ;
-
-            });
-
+            console.log(docRef);
             
     // customer.forEach(element => {
     //   AddItemsToTable(element.firstName, element.lastName, element.mobile, element.vehicleNumber, element.email);
