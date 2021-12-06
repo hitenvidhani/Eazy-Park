@@ -232,7 +232,7 @@
                                 Wallet
                             </h1>
                         </div>
-                        <h4>Amount in Wallet:</h4>
+                        <h4 id="amt"></h4>
                         <h4>Add Money:</h4>
                         <form>
                             <div class="form-group ">
@@ -377,7 +377,19 @@
         })
 
     }
-
+    const dbRef1 = collection(db, "Customers");
+    var amount ;
+    onSnapshot(dbRef1, (querySnapshot) => {
+            querySnapshot.forEach(doc => {
+                // console.log((doc.data().amount));
+                // console.log(typeof(doc.data().email))
+                if(doc.data().email===String(sessionStorage.getItem("useremail"))){
+                 amount = doc.data().amount;
+                 console.log(amount)
+                }
+            });
+        document.getElementById('amt').innerHTML="Your wallet balance is: "+amount;
+        })
     window.onload = GetAllDataRealTime;
 </script>
 

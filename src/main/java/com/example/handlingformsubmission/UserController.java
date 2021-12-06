@@ -70,6 +70,10 @@ public class UserController {
 	public String confirmation(Model model){
 		return "confirmation";
 	}
+	@GetMapping("/user_edit")
+	public String user_edit(Model model){
+		return "user_edit";
+	}
 
 	@PostMapping("/user_signup")
 	@ResponseBody
