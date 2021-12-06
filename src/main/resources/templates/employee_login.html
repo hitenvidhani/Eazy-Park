@@ -15,6 +15,7 @@
     color: #222;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    background-image: linear-gradient(to right, #7B1FA2, #E91E63)
   }
   
   #login-box {
@@ -239,7 +240,7 @@
      if(userName==username && password==pass){flag=1;console.log(username);}
     })
     if(flag==1)
-    {window.location.href = 'worker_dashboard'; }
+    {window.location.href = dir+'/worker_dashboard'; }
     else{ alert('Please check your passcode and try again')};
  });
  
