@@ -197,7 +197,7 @@
 <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
 <script type='text/javascript'></script>
 
-<body onload="validDate()">
+<body>
     <div id="booking" class="section">
         <div class="section-center">
             <div class="container">
@@ -226,7 +226,14 @@
                                         <button class="submit-btn">Wallet</button>
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>   
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button id="logOut" class="submit-btn">Sign Out</button>
+                                    </div>
+                                </div>
+                            </div>                               
                             
 
                         </form>
@@ -237,7 +244,7 @@
     </div>
 </body>
 
-<script>
+<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
     import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
     import { getAuth, signOut ,onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
