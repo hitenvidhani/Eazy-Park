@@ -204,7 +204,7 @@
                 <div class="row">
                     <div class="booking-form">
                         <div class="form-header">
-                            <h1 id="intro">User dashboard</h1>
+                            <h1 id="intro"></h1>
                         </div>
                         <form>
                             <div class="row">
@@ -222,7 +222,7 @@
     </div>
 </body>
 <script type="module">
- document.getElementById("intro").innerHTML="Hello "+(sessionStorage.getItem("user"))+"! How are you today?";
+ 
  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
   
@@ -246,18 +246,23 @@
 
   const db =  getFirestore();
   var workerSpace ="";
+  var workerRating;
  const dbRef = collection(db, "Workers");
  onSnapshot(dbRef, (querySnapshot)=> {
        querySnapshot.forEach(doc => {
        // console.log(doc.data().password)
        if(doc.data().name == sessionStorage.getItem("user")){
         workerSpace = doc.data().spot;
+        workerRating = doc.data().rating;
+        // console.log(workerRating);
        }
-       console.log(workerSpace);
       });
+      
+      console.log(workerRating);
       document.getElementById("toDo").innerHTML="Available jobs to do in "+workerSpace; 
+      
+    document.getElementById("intro").innerHTML="Hello "+(sessionStorage.getItem("user"))+"! Your rating is "+workerRating;
     });
-    document.getElementById("toDo").innerHTML="Available jobs to do in "+workerSpace; 
 
 </script>
 

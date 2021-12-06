@@ -42,11 +42,14 @@ public class WorkerController {
 		// crudService.getAllCRUD();
 		return "viewWorker";
 	}
-
-	
+ @GetMapping("/worker_dashboard")
+	public String dashWork(Model model) throws InterruptedException, ExecutionException {
+		// model.addAttribute("view");
+		// crudService.getAllCRUD();
+		return "worker_dashboard";
+	}
 	@PostMapping("/worker")
 	public String greetingSubmit(@RequestParam("name") String name, @RequestParam("spot") String spot, @RequestParam("slot") int slot , @RequestParam("hour") int hour , @RequestParam("rating") int rating,@RequestParam("password") String password ,@ModelAttribute Worker worker, Model model) throws ExecutionException, InterruptedException {
-		
 		// System.out.println("User Name :" + id);
 		// System.out.println("Password :" + pass);
 		Worker w= new Worker();

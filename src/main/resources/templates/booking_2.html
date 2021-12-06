@@ -113,6 +113,7 @@
         opacity: 1;
         top: 10px;
     }
+
     .booking-form input[type="number"].form-control+.form-label {
         opacity: 1;
         top: 10px;
@@ -240,24 +241,26 @@
                                     <input type="checkbox" id="service1" name="service1" value="repair">
                                     <label for="vehicle2"> Car Inspection</label><br>
                                     <input type="checkbox" id="service3" name="service3" value="dryclean">
-                                    <label for="vehicle3"> Dry Cleaning</label><br><br>                                    
+                                    <label for="vehicle3"> Dry Cleaning</label><br><br>
                                 </div>
- 
+
                             </div>
                             <div class="row">
+                                <a href="/payment">
                                 <div class="form-btn">
-                                    <button class="submit-btn" onclick="location.href='/payment'">Checkout</button>
+                                        <button class="submit-btn" >Checkout</button>
                                 </div>
-                                
-                                </div>                                
+                                    </a>
+
                             </div>
-
-
-                        </form>
                     </div>
+
+
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
@@ -266,7 +269,7 @@
 <script type="module">
 
 
-    
+
     // var select = document.getElementById('city');
 
     // function AddItemsToTable(name, location) {
@@ -325,12 +328,8 @@
     // console.log(sessionStorage.getItem('date'));
 
 
-    function GetAllDataRealTime() {
+    async function GetAllDataRealTime() {
     //     const dbRef = collection(db, "Spots");
-    //     var today = new Date().toISOString().split('T')[0];
-    //         var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-    //         document.getElementsByName("date")[0].setAttribute('min', today);
-    //         document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
 
     //     onSnapshot(dbRef, (querySnapshot) => {
     //         var spot = [];
@@ -353,18 +352,23 @@
             //     console.log("Error getting documents: ", error);
             // }); 
             
-            var docRef = collection(db , "Spots").doc(sessionStorage.getItem('city').split(',')[0]);
-            console.log(collection(db , "Spots"));
+            var docRef = await doc(db , "Spots" , sessionStorage.getItem('city').split(',')[0]);
 
-            onSnapshot(dbRef, (querySnapshot) => {
-            var spot = [];
+            console.log(docRef);
+            
+    // customer.forEach(element => {
+    //   AddItemsToTable(element.firstName, element.lastName, element.mobile, element.vehicleNumber, element.email);
+    // })
 
-            querySnapshot.isEqual
-            forEach(doc => {
-                spot.push(doc.data());
-            });
-            AddAllItemsToTable(spot);
-        })
+        //     onSnapshot(dbRef, (querySnapshot) => {
+        //     var spot = [];
+
+        //     querySnapshot.isEqual
+        //     forEach(doc => {
+        //         spot.push(doc.data());
+        //     });
+        //     AddAllItemsToTable(spot);
+        // })
 
             // docRef.get().then((doc) => {
             //     if (doc.exists) {
@@ -382,9 +386,6 @@
 
     window.onload = GetAllDataRealTime;
 </script>
-
-
-<!-- Not Working when firebase is used - check once -->
 
 
 
