@@ -1,2 +1,15 @@
 com\example\handlingformsubmission\AdminController.class
+com\example\handlingformsubmission\IndexController.class
+com\example\handlingformsubmission\HandlingFormSubmissionApplication.class
+com\example\handlingformsubmission\Spot.class
+com\example\handlingformsubmission\GreetingController.class
+com\example\handlingformsubmission\SpotService.class
+com\example\handlingformsubmission\WorkerController.class
+com\example\handlingformsubmission\UserService.class
+com\example\handlingformsubmission\Worker.class
+com\example\handlingformsubmission\User.class
+com\example\handlingformsubmission\CRUDService.class
 com\example\handlingformsubmission\UserController.class
+com\example\handlingformsubmission\WorkerService.class
+com\example\handlingformsubmission\SpotController.class
+com\example\handlingformsubmission\Greeting.class

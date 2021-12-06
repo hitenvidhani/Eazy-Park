@@ -1,5 +1,7 @@
 package com.example.handlingformsubmission;
 
+import java.util.ArrayList;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +11,7 @@ public class Spot {
 
 	private String name;
 	private String location;
- private int suv,hatch;
- private List<Map<String,Integer>> maps = new ArrayList<Map<String,Integer>>();
+ 	private int suv,hatch;
 
 	public String getName() {
 		return name;

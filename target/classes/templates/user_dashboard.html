@@ -216,7 +216,6 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group ">
-                                        <!-- <button class="submit-btn">Book a new Spot</button> -->
                                         <input class="submit-btn" type="button" onclick="location.href='/booking';" value="Book a new Spot" />
                                     </div>
                                 </div>
@@ -237,6 +236,63 @@
         </div>
     </div>
 </body>
+
+<script>
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
+    import { getAuth, signOut ,onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    const actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be in the authorized domains list in the Firebase Console.
+      url: 'http://localhost:8080/user_login',
+      // This must be true.
+      handleCodeInApp: true,
+    };
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
+      authDomain: "trial-6b9c1.firebaseapp.com",
+      databaseURL: "https://trial-6b9c1-default-rtdb.firebaseio.com",
+      projectId: "trial-6b9c1",
+      storageBucket: "trial-6b9c1.appspot.com",
+      messagingSenderId: "192488287455",
+      appId: "1:192488287455:web:15f12c03d465111d578d6a",
+      measurementId: "G-7CN8YBL3KS"
+    };
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    var btn=document.getElementById("logOut");
+    btn.addEventListener("click",(e)=>{
+        signOut(auth).then(() => {
+            console.log("LoggedOut");
+        })
+        .catch((error) => {
+            // An error happened.
+});
+    });
+     function run(){
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            const uid = user.uid;
+            console.log(uid);
+            // ...
+        } else {
+            window.location.href = "user_login";
+            // User is signed out
+            // ...
+        }
+        });
+    }
+    window.onload=run;
+</script>
 
 
 </html>
