@@ -220,8 +220,6 @@
 <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
 <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
-<script type='text/javascript'></script>
-
 <body>
     <div id="booking" class="section">
         <div class="section-center">
@@ -229,7 +227,7 @@
                 <div class="row">
                     <div class="booking-form">
                         <div class="form-header">
-                            <h1 id="available"></h1>
+                            <h1 id="available">Slot Availability</h1>
                             <h1 id="slot"></h1>
                         </div>
                         <h4>Available Services:</h4>
@@ -246,7 +244,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-btn">
-                                        <button class="submit-btn" id="submit-btn" onclick="location.href='/payment';" >Checkout</button>
+                                        <button class="submit-btn" id="submitbtn" >Checkout</button>
                                 </div>
                             </div>
                     </div>
@@ -256,35 +254,7 @@
     </div>
     </div>
 </body>
-
-
-
 <script type="module">
-
-
-
-    // var select = document.getElementById('city');
-
-    // function AddItemsToTable(name, location) {
-
-    //     let option = document.createElement('option');
-
-    //     option.innerHTML = name + ", " + location;
-
-
-    //     select.appendChild(option);
-
-    // }
-
-    // function AddAllItemsToTable(spots) {
-
-    //     spots.forEach(element => {
-    //         AddItemsToTable(element.name, element.location);
-    //     })
-    // }
-
-
-
     import {
         initializeApp
     } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
@@ -292,6 +262,14 @@
         getAnalytics
     } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
 
+    import {
+        getFirestore,
+        doc,
+        getDoc,
+        getDocs,
+        onSnapshot,
+        collection
+    } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
     const firebaseConfig = {
         apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
         authDomain: "trial-6b9c1.firebaseapp.com",
@@ -306,17 +284,11 @@
 
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
-
-    import {
-        getFirestore,
-        doc,
-        getDoc,
-        getDocs,
-        onSnapshot,
-        collection
-    } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
-
     const db = getFirestore();
+</script>
+
+<script>
+      
 
     
     var availabile_space = -1;
@@ -325,8 +297,6 @@
 
 
     async function GetAllDataRealTime() {
-        
-            var availabile;
         const dbRef = collection(db, "Spots");
         onSnapshot(dbRef, (querySnapshot)=> {
               querySnapshot.forEach(doc => {
@@ -381,36 +351,35 @@
                 if(sessionStorage.getItem('car_type') == "SUV / SEDAN"){
 
 
-                    for(var i = suv_no; i<suv_no+hatch_no ;i++){
+                    // for(var i = suv_no; i<suv_no+hatch_no ;i++){
                         
-                        time = temp;
+                    //     time = temp;
 
-                        // console.log(occupancy_status[i])
-                        if(occupancy_status[i] == "false"){
-                            flag = 1;                            
-                            time++;
+                    //     // console.log(occupancy_status[i])
+                    //     if(occupancy_status[i] == "false"){
+                    //         flag = 1;                            
+                    //         // time++;
+                    //         for(var a; time >= 24 || time == final_hour; time++){
+                    //             var key = Object.keys(doc.data().hour[time])[i];
+                    //             if(!((doc.data().hour[time])[key])){
+                    //                 flag =0;
+                    //                 break;
+                    //             }
+                    //         }
+                    //         if(flag == 1){
+                    //             availabile_space = suv_no+hatch_no - i;
 
-                            for(; time >= 24 || time == final_hour; time++){
-                                var key = Object.keys(doc.data().hour[time])[i];
-                                if(!((doc.data().hour[time])[key])){
-                                    flag =0;
-                                    break;
-                                }
-                            }
-                            if(flag == 1){
-                                availabile_space = suv_no+hatch_no - i;
-
-                                console.log(availabile_space);
+                    //             console.log(availabile_space);
                                 
-                                document.getElementById('available').innerHTML = ("Slot Availabile : Space No. " + availabile_space); 
-                                break;
+                    //             document.getElementById('available').innerHTML = ("Slot Availabile : Space No. " + availabile_space); 
+                    //             break;
 
-                            }
-                        }
-                    }
-                    if(flag == 0){
-                        document.getElementById('available').innerHTML = "Slot : Not Available ";                                
-                    }
+                    //         }
+                    //     }
+                    // }
+                    // if(flag == 0){
+                    //     document.getElementById('available').innerHTML = "Slot : Not Available ";                                
+                    // }
                 }
                     
                 // HATCHBACK 
@@ -458,26 +427,34 @@
             //    console.log(doc.data().hour[0].space_1[0]);
               
              });
-           });
+           }); 
+
+
+    }
+    var btn = document.getElementById('submitbtn');
     
-            var btn = document.getElementById('submit-btn');
+    var loc = window.location.pathname;
+    var dir = loc.substring(0, loc.lastIndexOf('/'));
+
+    console.log()
 
             btn.addEventListener("click", function() {
                 sessionStorage.setItem('space_choosen', availabile_space) ;
                 sessionStorage.setItem('service1' , document.getElementById('service1').checked) ;
                 sessionStorage.setItem('service2' , document.getElementById('service2').checked) ;
                 sessionStorage.setItem('service3' , document.getElementById('service3').checked) ;
+                window.location.href= '/payment';
+                // console.log()
 
             });
-
-            
     
-
-
-    }
 
     window.onload = GetAllDataRealTime;
 </script>
+
+
+
+
 
 
 

@@ -1,341 +1,298 @@
 <html>
-<head>
-<title>Sign Up</title>
-<style>
-  /*@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);*/
-*:focus {
-    outline: none;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    background: #DDD;
-    font-size: 16px;
-    color: #222;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    background-image: linear-gradient(to right, #7B1FA2, #E91E63);
-  }
-  
-  #login-box {
-    position: relative;
-    margin: 5% auto;
-    width: 600px;
-    height: 500px;
-    background: #FFF;
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  }
-  
-  .left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-    padding: 40px;
-    width: 300px;
-    height: 400px;
-  }
-  
-  h1 {
-    margin: 0 0 20px 0;
-    font-weight: 300;
-    font-size: 28px;
-  }
-  
-  input[type="text"],
-  input[type="password"],input[type="tel"] {
-    display: block;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-    padding: 4px;
-    width: 220px;
-    height: 32px;
-    border: none;
-    border-bottom: 1px solid #AAA;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    transition: 0.2s ease;
-  }
-  
-  input[type="text"]:focus,
-  input[type="password"]:focus,input[type="tel"]:focus {
-    border-bottom: 2px solid #16a085;
-    color: #16a085;
-    transition: 0.2s ease;
-  }
-  
-  input[type="submit"] {
-    margin-top: 28px;
-    width: 120px;
-    height: 32px;
-    background: #16a085;
-    border: none;
-    border-radius: 2px;
-    color: #FFF;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    text-transform: uppercase;
-    transition: 0.1s ease;
-    cursor: pointer;
-  }
-  
-  input[type="submit"]:hover,
-  input[type="submit"]:focus {
-    opacity: 0.8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    transition: 0.1s ease;
-  }
-  
-  input[type="submit"]:active {
-    opacity: 1;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-    transition: 0.1s ease;
-  }
-  
-  .or {
-    position: absolute;
-    top: 180px;
-    left: 280px;
-    width: 40px;
-    height: 40px;
-    background: #DDD;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    line-height: 40px;
-    text-align: center;
-  }
-  
-  .right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    box-sizing: border-box;
-    padding: 40px;
-    width: 300px;
-    height: 400px;
-    background: url('https://goo.gl/YbktSj');
-    background-size: cover;
-    background-position: center;
-    border-radius: 0 2px 2px 0;
-  }
-  
-  .right .loginwith {
-    display: block;
-    margin-bottom: 40px;
-    font-size: 28px;
-    color: #FFF;
-    text-align: center;
-  }
-  
-  button.social-signin {
-    margin-bottom: 20px;
-    width: 220px;
-    height: 36px;
-    border: none;
-    border-radius: 2px;
-    color: #FFF;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    transition: 0.2s ease;
-    cursor: pointer;
-  }
-  
-  button.social-signin:hover,
-  button.social-signin:focus {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    transition: 0.2s ease;
-  }
-  
-  button.social-signin:active {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-    transition: 0.2s ease;
-  }
-  
-  button.social-signin.facebook {
-    background: #32508E;
-  }
-  
-  button.social-signin.twitter {
-    background: #55ACEE;
-  }
-  
-  button.social-signin.google {
-    background: #DD4B39;
-  }
-
-  .dur-rakho{
-    margin-bottom: 20px;
-    width: 220px;
-    height: 36px;
-    background-color: #16a085;
-    margin-top: 28px;
-    border: none;
-    border-radius: 2px;
-    color: #FFF;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    text-transform: uppercase;
-    transition: 0.1s ease;
-    cursor: pointer;
-  }
-</style>
-</head>
-
-<body>
-  
-<div id="login-box">
-  <div class="left">
-    <h1 id='status'>Edit Profile</h1>
-    <!--<input type="text" id="username" name="username" placeholder="username" />-->
-    <input type="text" id="vehicleno" name="vehicleno" placeholder="vehicle number">
-    <input type="tel" id="contact" name="contact" placeholder="mobile no">
-    <input type="submit" id='signUp' name="signup_submit" value="Update" />
+  <head>
+  <title>Sign Up</title>
+  <style>
+    /*@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);*/
+  *:focus {
+      outline: none;
+    }
     
-
-  </div>
-  <!--<div id="login-box">
+    body {
+      margin: 0;
+      padding: 0;
+      background: #DDD;
+      font-size: 16px;
+      color: #222;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      background-image: linear-gradient(to right, #7B1FA2, #E91E63);
+    }
+    
+    #login-box {
+      position: relative;
+      margin: 5% auto;
+      width: 600px;
+      height: 500px;
+      background: #FFF;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+    
+    .left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      padding: 40px;
+      width: 300px;
+      height: 400px;
+    }
+    
+    h1 {
+      margin: 0 0 20px 0;
+      font-weight: 300;
+      font-size: 28px;
+    }
+    
+    input[type="text"],
+    input[type="password"],input[type="tel"] {
+      display: block;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      padding: 4px;
+      width: 220px;
+      height: 32px;
+      border: none;
+      border-bottom: 1px solid #AAA;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      transition: 0.2s ease;
+    }
+    
+    input[type="text"]:focus,
+    input[type="password"]:focus,input[type="tel"]:focus {
+      border-bottom: 2px solid #16a085;
+      color: #16a085;
+      transition: 0.2s ease;
+    }
+    
+    input[type="submit"] {
+      margin-top: 28px;
+      width: 120px;
+      height: 32px;
+      background: #16a085;
+      border: none;
+      border-radius: 2px;
+      color: #FFF;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: 0.1s ease;
+      cursor: pointer;
+    }
+    
+    input[type="submit"]:hover,
+    input[type="submit"]:focus {
+      opacity: 0.8;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      transition: 0.1s ease;
+    }
+    
+    input[type="submit"]:active {
+      opacity: 1;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      transition: 0.1s ease;
+    }
+    
+    .or {
+      position: absolute;
+      top: 180px;
+      left: 280px;
+      width: 40px;
+      height: 40px;
+      background: #DDD;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      line-height: 40px;
+      text-align: center;
+    }
+    
+    .right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      box-sizing: border-box;
+      padding: 40px;
+      width: 300px;
+      height: 400px;
+      background: url('https://goo.gl/YbktSj');
+      background-size: cover;
+      background-position: center;
+      border-radius: 0 2px 2px 0;
+    }
+    
+    .right .loginwith {
+      display: block;
+      margin-bottom: 40px;
+      font-size: 28px;
+      color: #FFF;
+      text-align: center;
+    }
+    
+    button.social-signin {
+      margin-bottom: 20px;
+      width: 220px;
+      height: 36px;
+      border: none;
+      border-radius: 2px;
+      color: #FFF;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+    
+    button.social-signin:hover,
+    button.social-signin:focus {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      transition: 0.2s ease;
+    }
+    
+    button.social-signin:active {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      transition: 0.2s ease;
+    }
+    
+    button.social-signin.facebook {
+      background: #32508E;
+    }
+    
+    button.social-signin.twitter {
+      background: #55ACEE;
+    }
+    
+    button.social-signin.google {
+      background: #DD4B39;
+    }
+ 
+    .dur-rakho{
+      margin-bottom: 20px;
+      width: 220px;
+      height: 36px;
+      background-color: #16a085;
+      margin-top: 28px;
+      border: none;
+      border-radius: 2px;
+      color: #FFF;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: 0.1s ease;
+      cursor: pointer;
+    }
+  </style>
+  </head>
+ 
+  <body>
+    
+  <div id="login-box">
     <div class="left">
-      <h1 id='status'>Login</h1>
-      <input type="text" id="email" name="email" placeholder="E-mail" />
-      <input type="password" id="password" name="password" placeholder="Password" />
+      <h1 id='status'>Edit Profile</h1>
+      <!--<input type="text" id="username" name="username" placeholder="username" />-->
+      <input type="text" id="vehicleno" name="vehicleno" placeholder="vehicle number">
+      <input type="tel" id="contact" name="contact" placeholder="mobile no">
+      <input type="submit" id='signUp' name="signup_submit" value="Update" />
       
-      <input type="submit" id='login' name="login_submit" value="Login" />
-  
-    </div>-->
-  
-  <div class="right">
-
-  </div>
-
-  
-</div>
-</body>
-
-<script type="module">
-  
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
-    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
-    import { getAuth,onAuthStateChanged,sendEmailVerification, sendSignInLinkToEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
-
-    const actionCodeSettings = {
-  // URL you want to redirect back to. The domain (www.example.com) for this
-  // URL must be in the authorized domains list in the Firebase Console.
-  url: 'http://localhost:8080',
-  // This must be true.
-  handleCodeInApp: true,
-};
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
-      authDomain: "trial-6b9c1.firebaseapp.com",
-      databaseURL: "https://trial-6b9c1-default-rtdb.firebaseio.com",
-      projectId: "trial-6b9c1",
-      storageBucket: "trial-6b9c1.appspot.com",
-      messagingSenderId: "192488287455",
-      appId: "1:192488287455:web:15f12c03d465111d578d6a",
-      measurementId: "G-7CN8YBL3KS"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-    const auth = getAuth();
-
-    var signUp=document.getElementById("signUp");
-    signUp.addEventListener('click', (e) => {
-
-      var email = document.getElementById('email').value;
-      var password = document.getElementById('password').value;
-      var fname = document.getElementById('fname').value;
-      var lname = document.getElementById('lname').value;
-      var vehicleno = document.getElementById('vehicleno').value;
-      var contact = document.getElementById('contact').value;
-      var xhr = new XMLHttpRequest();
-
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-    // Signed in 
-    // if they open the link on the same device.
-        const user = userCredential.user;
-        console.log(user);
-        sendEmailVerification(auth.currentUser)
-        .then(function() {
-          // Verification email sent.
-              set(ref(database, '/users' + user.uid),{
-              fname: fname,
-              lname: lname,
-              vehicleno: vehicleno,
-              contact: contact,
-              email: email,
-          })
-          alert('user created!');
-          xhr.open("POST", "/user_signup", false);
-          //xhr.onload = // something
-              xhr.send(JSON.stringify({
-                "email":email,
-                "lname":lname,
-                "vehNo":vehicleno,
-                "fname":fname,
-                "mobNo":contact
-            })
-            )
-          window.localStorage.setItem('emailForSignIn', emailID);
-        })
-        .catch(function(error) {
-          // Error occurred. Inspect error.code.
-        });
-  //   sendSignInLinkToEmail(auth, email, actionCodeSettings)
-  //   .then(() => {
-  //     // The link was successfully sent. Inform the user.
-  //     // Save the email locally so you don't need to ask the user for it again
-  //     // if they open the link on the same device.
-  //     const user = userCredential.user;
-
-  //     set(ref(database, '/users' + user.uid),{
-  //         fname: fname,
-  //         lname: lname,
-  //         vehicleno: vehicleno,
-  //         contact: contact,
-  //         email: email,
-  //     })
-  //     alert('user created!');
-  //     xhr.open("POST", "/user_signup", false);
-  //   //xhr.onload = // something
-  //         xhr.send(JSON.stringify({
-  //           "email":email,
-  //           "lname":lname,
-  //           "vehNo":vehicleno,
-  //           "fname":fname,
-  //           "mobNo":contact
-  //       })
-  //       )
-  //     window.localStorage.setItem('emailForSignIn', emailID);
-  //     // ...
-  // })
-  // .catch((error) => {
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   // ...
-  // });
+ 
+    </div>
+    <!--<div id="login-box">
+      <div class="left">
+        <h1 id='status'>Login</h1>
+        <input type="text" id="email" name="email" placeholder="E-mail" />
+        <input type="password" id="password" name="password" placeholder="Password" />
+        
+        <input type="submit" id='login' name="login_submit" value="Login" />
     
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-
-    alert(errorMessage);
-    // ..
-  });
-});;
-
-  </script>
-
-</html>
+      </div>-->
+    
+    <div class="right">
+ 
+    </div>
+ 
+    
+  </div>
+  </body>
+ 
+  <script type="module">
+    
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+      import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
+      import { getAuth,onAuthStateChanged,sendEmailVerification, sendSignInLinkToEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
+ 
+      const actionCodeSettings = {
+    // URL you want to redirect back to. The domain (www.example.com) for this
+    // URL must be in the authorized domains list in the Firebase Console.
+    url: 'http://localhost:8080',
+    // This must be true.
+    handleCodeInApp: true,
+  };
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
+        authDomain: "trial-6b9c1.firebaseapp.com",
+        databaseURL: "https://trial-6b9c1-default-rtdb.firebaseio.com",
+        projectId: "trial-6b9c1",
+        storageBucket: "trial-6b9c1.appspot.com",
+        messagingSenderId: "192488287455",
+        appId: "1:192488287455:web:15f12c03d465111d578d6a",
+        measurementId: "G-7CN8YBL3KS"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth();
+ 
+      onAuthStateChanged(auth, (user) => {
+          if (user) {
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/firebase.User
+              const uid = user.uid;
+              var signUp=document.getElementById("signUp");
+        signUp.addEventListener('click', (e) => {
+        console.log(user);
+        var email = user.email;
+        const split=user.displayName.split(" ");
+        var password = null;
+        var fname = split[0];
+        var lname = split[1];
+        var vehicleno = document.getElementById('vehicleno').value;
+        var contact = document.getElementById('contact').value;
+        var xhr = new XMLHttpRequest();
+            // Verification email sent.
+                set(ref(database, '/users' + user.uid),{
+                fname: fname,
+                lname: lname,
+                vehicleno: vehicleno,
+                contact: contact,
+                email: email,
+            })
+            alert('Sign Up Completed!');
+            xhr.open("POST", "/user_signup", false);
+            //xhr.onload = // something
+                xhr.send(JSON.stringify({
+                  "email":email,
+                  "lname":lname,
+                  "vehNo":vehicleno,
+                  "fname":fname,
+                  "mobNo":contact
+              })
+              )
+              window.location.href = "user_login";
+          })
+        //       // ...
+          } 
+          else {
+              window.location.href = "user_login";
+          }
+          });
+      
+ 
+    </script>
+ 
+  </html>

@@ -74,6 +74,10 @@ public class UserController {
 	public String user_edit(Model model){
 		return "user_edit";
 	}
+	@GetMapping("/currentBooking")
+	public String current_booking(Model model){
+		return "currentBooking";
+	}
 
 	@PostMapping("/user_signup")
 	@ResponseBody

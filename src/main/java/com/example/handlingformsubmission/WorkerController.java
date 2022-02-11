@@ -26,7 +26,7 @@ public class WorkerController {
 		model.addAttribute("worker", new Worker());
 		return "worker";
 	}
-
+	
 	@PostMapping("/viewWorker")
 	@ResponseBody
 	public String greetingSubmit(@RequestBody String name) throws ExecutionException, InterruptedException {
@@ -42,6 +42,13 @@ public class WorkerController {
 		// crudService.getAllCRUD();
 		return "viewWorker";
 	}
+
+	@GetMapping("/view_jobs")
+	public String viewJobs(Model model) throws InterruptedException, ExecutionException {
+		// model.addAttribute("view");
+		// crudService.getAllCRUD();
+		return "worker_availableJobs";
+	}
  @GetMapping("/worker_dashboard")
 	public String dashWork(Model model) throws InterruptedException, ExecutionException {
 		// model.addAttribute("view");
@@ -55,7 +62,7 @@ public class WorkerController {
 		Worker w= new Worker();
 		w.setName(name);
 		w.setSpot(spot);
-		w.setSlot(slot);
+		// w.setSlot(slot);
 		w.setHour(hour);
 		w.setRating(rating);
   w.setPassword(password);

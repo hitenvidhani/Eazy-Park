@@ -8,12 +8,12 @@
        body {
         background-image: linear-gradient(to right, #7B1FA2, #E91E63)
     }
-
+ 
     .section {
         position: relative;
         height: 100vh;
     }
-
+ 
     .section .section-center {
         position: absolute;
         top: 50%;
@@ -22,11 +22,11 @@
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
     }
-
+ 
     #booking {
         font-family: 'Raleway', sans-serif;
     }
-
+ 
     .booking-form {
         position: relative;
         max-width: 642px;
@@ -34,12 +34,11 @@
         margin: auto;
         padding: 40px;
         overflow: hidden;
-        background-image: url('https://cdn.pixabay.com/photo/2016/11/22/23/44/porsche-1851246_1280.jpg');
         background-size: cover;
         border-radius: 5px;
         z-index: 20;
     }
-
+ 
     .booking-form::before {
         content: '';
         position: absolute;
@@ -47,16 +46,15 @@
         right: 0;
         bottom: 0;
         top: 0;
-        background: rgba(0, 0, 0, 0.7);
         z-index: -1;
     }
-
+ 
     .booking-form .form-header {
         text-align: center;
         position: relative;
         margin-bottom: 30px;
     }
-
+ 
     .booking-form .form-header h1 {
         font-weight: 700;
         text-transform: capitalize;
@@ -64,12 +62,12 @@
         margin: 0px;
         color: #fff;
     }
-
+ 
     .booking-form .form-group {
         position: relative;
         margin-bottom: 30px;
     }
-
+ 
     .booking-form .form-control {
         background-color: rgba(255, 255, 255, 0.2);
         height: 60px;
@@ -82,47 +80,47 @@
         -webkit-transition: 0.2s;
         transition: 0.2s;
     }
-
+ 
     .booking-form .form-control::-webkit-input-placeholder {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form .form-control:-ms-input-placeholder {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form .form-control::placeholder {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form .form-control:focus {
         -webkit-box-shadow: 0px 0px 0px 2px #ff8846;
         box-shadow: 0px 0px 0px 2px #ff8846;
     }
-
+ 
     .booking-form input[type="date"].form-control {
         padding-top: 16px;
     }
-
+ 
     .booking-form input[type="date"].form-control:invalid {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form input[type="date"].form-control+.form-label {
         opacity: 1;
         top: 10px;
     }
-
+ 
     .booking-form select.form-control {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
     }
-
+ 
     .booking-form select.form-control:invalid {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form select.form-control+.select-arrow {
         position: absolute;
         right: 15px;
@@ -137,18 +135,18 @@
         color: rgba(255, 255, 255, 0.5);
         font-size: 14px;
     }
-
+ 
     .booking-form select.form-control+.select-arrow:after {
         content: '\279C';
         display: block;
         -webkit-transform: rotate(90deg);
         transform: rotate(90deg);
     }
-
+ 
     .booking-form select.form-control option {
         color: #000;
     }
-
+ 
     .booking-form .form-label {
         position: absolute;
         top: -10px;
@@ -164,16 +162,16 @@
         -webkit-transition: 0.2s all;
         transition: 0.2s all;
     }
-
+ 
     .booking-form .form-group.input-not-empty .form-control {
         padding-top: 16px;
     }
-
+ 
     .booking-form .form-group.input-not-empty .form-label {
         opacity: 1;
         top: 10px;
     }
-
+ 
     .booking-form .submit-btn {
         color: #fff;
         background-color: #e35e0a;
@@ -189,7 +187,7 @@
         -webkit-transition: 0.2s all;
         transition: 0.2s all;
     }
-
+ 
     .booking-form .submit-btn:hover,
     .booking-form .submit-btn:focus {
         opacity: 0.9;
@@ -211,14 +209,14 @@
       
     </style>
 </head>
-
+ 
 <script src="view.js"></script>
-
-
+ 
+ 
 <body>
     <!-- <input type="button" value="Generate a table." onclick="generate_table()">
     <INPUT type="button" value="get JAVA array (as a string)" onClick = "getJavaArrayAsAString()"> -->
-
+ 
     <div class="container mt-3">
       <h1>Spots Available</h1>
       <table class="table table-dark">
@@ -232,32 +230,25 @@
         <tbody id = "tbody1"></tbody>
       </table>
     </div>
-    <div id="booking" class="section">
-     <div class="section-center">
-         <div class="container">
-             <div class="row">
-                 <div class="booking-form">
-                           <div class="row justify-content-center">
-                             <div class="col-md-6">
-                                 <div class="form-group">
-                                     <button id="logOut" class="submit-btn">Sign Out</button>
-                                 </div>
-                             </div>
-                         </div>                               
-                 </div>
-             </div>
-         </div>
-     </div>
- </div> 
+    <div class="booking-form">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-group">
+                <button id="logOut" class="submit-btn">Sign Out</button>
+            </div>
+        </div>
+    </div>                               
+</div>
+    
 </body>
-
-
-
+ 
+ 
+ 
 <script type="module">
-
+ 
   var stdNo = 0;
   var tbody = document.getElementById('tbody1');
-
+ 
   function AddItemsToTable(name, location, suv,hatch){
     let trow = document.createElement("tr");
     let td1 = document.createElement('td');
@@ -272,17 +263,17 @@
     td4.innerHTML = suv;
     td5.innerHTML = hatch;
     
-
+ 
     trow.appendChild(td1);
     trow.appendChild(td2);
     trow.appendChild(td3);
     trow.appendChild(td4);
     trow.appendChild(td5);
-
+ 
     tbody.appendChild(trow);
-
+ 
   }
-
+ 
   function AddAllItemsToTable(spots){
     stdNo = 0;
     tbody.innerHTML="";
@@ -294,8 +285,8 @@
       console.log(element)
     })
   }
-
-
+ 
+ 
   
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
@@ -310,51 +301,55 @@
     appId: "1:192488287455:web:9edc9a178b1ec23f578d6a",
     measurementId: "G-N4RJLP15EL"
   };
-
+ 
   
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-
+ 
   import {
     getFirestore, doc, getDoc, getDocs, onSnapshot, collection
   } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
-
+ 
   const db = getFirestore();
-
+ 
   async function GetAllDataOnce(){
     const querySnapshot = await getDocs(collection(db, "Spots"));
-
+ 
     var spots = [];
-
+ 
     querySnapshot.forEach(doc => {
       spots.push(doc.data());
     });
-
+ 
     AddAllItemsToTable(spots);
     
     // console.log(slots);
   }
-
+ 
   function GetAllDataRealTime(){
     const dbRef = collection(db, "Spots");
-
+ 
     onSnapshot(dbRef, (querySnapshot)=> {
       var spots = [];
-
+ 
       querySnapshot.forEach(doc => {
         spots.push(doc.data());
       });
       AddAllItemsToTable(spots);
     })
-
+ 
   }
-
+ 
+ 
+  
+ 
+ 
   window.onload = GetAllDataRealTime;
-
-
+ 
+ 
 </script>
-
-
-
-
+ 
+ 
+ 
+ 
 </html>

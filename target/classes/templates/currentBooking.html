@@ -6,6 +6,17 @@
         background-image: linear-gradient(to right, #7B1FA2, #E91E63)
     }
 
+    h4{
+        color: white
+    }
+
+    h5{
+        color: white
+    }
+    p{
+        color: white
+    }
+
     .section {
         position: relative;
         height: 100vh;
@@ -109,6 +120,10 @@
         opacity: 1;
         top: 10px;
     }
+    .booking-form input[type="number"].form-control+.form-label {
+        opacity: 1;
+        top: 10px;
+    }
 
     .booking-form select.form-control {
         -webkit-appearance: none;
@@ -162,6 +177,21 @@
         transition: 0.2s all;
     }
 
+    .service_checkboxes {
+        color: #ff8846;
+        font-weight: 400;
+        height: 60px;
+        padding: 10px 30px;
+        width: 100%;
+        border-radius: 40px;
+        border: none;
+        font-size: 16px;
+        letter-spacing: 1.3px;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+        margin-bottom: 20px;
+    }
+
     .booking-form .form-group.input-not-empty .form-control {
         padding-top: 16px;
     }
@@ -185,6 +215,7 @@
         letter-spacing: 1.3px;
         -webkit-transition: 0.2s all;
         transition: 0.2s all;
+        margin-top: 50px;
     }
 
     .booking-form .submit-btn:hover,
@@ -204,39 +235,29 @@
                 <div class="row">
                     <div class="booking-form">
                         <div class="form-header">
-                            <h1>Parking & Service Bill</h1>
+                            <h1>Current Booking</h1>
                         </div>
-                        <table class="table table-striped table-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Parking Cost</th>
-                                    <th scope="col">Service Cost</th>
-                                    <th scope="col">Total Cost</th>
-                                    <th scope="col">Wallet Balance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td id="park_cost"></td>
-                                    <td id="service_cost"></td>
-                                    <td id="total_cost"></td>
-                                    <td id="wallet_balance"></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <form>
+                        <h4>Booking Details:</h5>
+                        <p id="loc">Location: </p>
+                        <p id="date">Date: </p>
+                        <p id="time">Time: </p>
+                        <p id="hour">Number of Hours: </p>
+                        <p id="car_type">Car Size: </p>
+                        <p id="amount">Amount Paid: </p>
+                        <p id="wallet">Amount Available In Wallet: </p>
+                            <div class="row">
+                                <div class="form-btn">
+                                    <button class="submit-btn" onclick="location.href='/user_dashboard'">Homepage</button>
+                                </div>          
+                            </div>                                
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <input class="submit-btn" type="button" onclick="location.href='/confirmation';"
-                                            value="Confirm booking" />
-                                    </div>
+                                    
                                 </div>
                             </div>
-
-
-                        </form>
+                                
+                            </div>
                     </div>
                 </div>
             </div>
@@ -244,97 +265,72 @@
     </div>
 </body>
 
-<script>
-    //  import {
-    //     initializeApp
-    // } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-    // import {
-    //     getAnalytics
-    // } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
-
-    // const firebaseConfig = {
-    //     apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
-    //     authDomain: "trial-6b9c1.firebaseapp.com",
-    //     databaseURL: "https://trial-6b9c1-default-rtdb.firebaseio.com",
-    //     projectId: "trial-6b9c1",
-    //     storageBucket: "trial-6b9c1.appspot.com",
-    //     messagingSenderId: "192488287455",
-    //     appId: "1:192488287455:web:9edc9a178b1ec23f578d6a",
-    //     measurementId: "G-N4RJLP15EL"
-    // };
 
 
-    // const app = initializeApp(firebaseConfig);
-    // const analytics = getAnalytics(app);
+<script type="module">
 
-    // import {
-    //     getFirestore,
-    //     doc,
-    //     getDoc,
-    //     getDocs,
-    //     onSnapshot,
-    //     collection
-    // } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
 
-    // const db = getFirestore();
 
-    // const dbRef1 = collection(db, "Customers");
-    // var amount ;
-    // onSnapshot(dbRef1, (querySnapshot) => {
-    //         querySnapshot.forEach(doc => {
-    //             // console.log((doc.data().amount));
-    //             // console.log(typeof(doc.data().email))
-    //             if(doc.data().email===String(sessionStorage.getItem("useremail"))){
-    //              amount = doc.data().amount;
-    //              console.log(amount)
-    //             }
-    //         });
-    //     document.getElementById('wallet_balance').innerHTML=""+amount;
-        
-    //     sessionStorage.setItem("wallet", amount - total_cost)
-    //     })
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+    import {
+        getAnalytics
+    } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
 
-    function calc() {
-        var wallet_tag = document.getElementById('wallet_balance');
-        var park_cost_tag = document.getElementById('park_cost');
-        var service_cost_tag = document.getElementById('service_cost');
-        var total_cost_tag = document.getElementById('total_cost');
+    const firebaseConfig = {
+        apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
+        authDomain: "trial-6b9c1.firebaseapp.com",
+        databaseURL: "https://trial-6b9c1-default-rtdb.firebaseio.com",
+        projectId: "trial-6b9c1",
+        storageBucket: "trial-6b9c1.appspot.com",
+        messagingSenderId: "192488287455",
+        appId: "1:192488287455:web:9edc9a178b1ec23f578d6a",
+        measurementId: "G-N4RJLP15EL"
+    };
 
-        var wallet = 1000;
-        var hours = parseInt(sessionStorage.getItem('hour'));
-        console.log(hours)
-        var park_price = 25;
-        var service_availed = 0;
-        var service1 = sessionStorage.getItem('service1');
-        var service2 = sessionStorage.getItem('service2');
-        var service3 = sessionStorage.getItem('service3');
-        if(service1 == "true"){
-            service_availed += 1;
-        }
-        if(service2 == "true"){
-            service_availed += 1;
-        }
-        if(service3 == "true"){
-            service_availed += 1;
-        }
-        console.log(service_availed)
-        var service_price = 10;
-        var total_cost = park_price * hours + service_availed * service_price;
 
-        // console.log(total_cost);
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
 
-        wallet_tag.innerHTML = wallet;
-        park_cost_tag.innerHTML = park_price * hours;
-        service_cost_tag.innerHTML = service_price * service_availed;
-        total_cost_tag.innerHTML = total_cost;
+    import {
+        getFirestore,
+        doc,
+        getDoc,
+        getDocs,
+        onSnapshot,
+        collection
+    } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
 
-        sessionStorage.setItem("amount", total_cost)
-        sessionStorage.setItem("wallet", wallet - total_cost)
+    const db = getFirestore();
+
+
+    function GetAllDataRealTime() {
+        const dbRef = collection(db, "Spots");
+
+
+        onSnapshot(dbRef, (querySnapshot) => {
+            var spot = [];
+
+            querySnapshot.forEach(doc => {
+                spot.push(doc.data());
+            });
+        })
+
+        document.getElementById("loc").innerHTML = "Location: " + sessionStorage.getItem('city');
+        document.getElementById("date").innerHTML = "Date: " + sessionStorage.getItem('date');
+        document.getElementById("time").innerHTML = "Time: " + sessionStorage.getItem('time');
+        document.getElementById("hour").innerHTML = "Hours: " + sessionStorage.getItem('hour');
+        document.getElementById("car_type").innerHTML = "Car Size: " + sessionStorage.getItem('car_type');
+        document.getElementById("amount").innerHTML = "Amount Paid: " + sessionStorage.getItem('amount');
+        document.getElementById("wallet").innerHTML = "Amount Available In Wallet: " + sessionStorage.getItem('wallet');
+
+
+
     }
 
-    window.onload = calc;
+    window.onload = GetAllDataRealTime;
 </script>
-
 
 
 </html>

@@ -275,7 +275,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase
         sendEmailVerification(auth.currentUser)
         .then(function() {
           // Verification email sent.
-              set(ref(database, '/users' + user.uid),{
+              set(ref(database, '/Customers' + user.uid),{
               fname: fname,
               lname: lname,
               vehicleno: vehicleno,

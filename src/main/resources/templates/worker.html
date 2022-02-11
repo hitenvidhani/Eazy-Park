@@ -5,12 +5,12 @@
     body {
         background-image: linear-gradient(to right, #7B1FA2, #E91E63)
     }
-
+ 
     .section {
         position: relative;
         height: 100vh;
     }
-
+ 
     .section .section-center {
         position: absolute;
         top: 50%;
@@ -19,11 +19,11 @@
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
     }
-
+ 
     #booking {
         font-family: 'Raleway', sans-serif;
     }
-
+ 
     .booking-form {
         position: relative;
         max-width: 642px;
@@ -36,7 +36,7 @@
         border-radius: 5px;
         z-index: 20;
     }
-
+ 
     .booking-form::before {
         content: '';
         position: absolute;
@@ -47,13 +47,13 @@
         background: rgba(0, 0, 0, 0.7);
         z-index: -1;
     }
-
+ 
     .booking-form .form-header {
         text-align: center;
         position: relative;
         margin-bottom: 30px;
     }
-
+ 
     .booking-form .form-header h1 {
         font-weight: 700;
         text-transform: capitalize;
@@ -61,12 +61,12 @@
         margin: 0px;
         color: #fff;
     }
-
+ 
     .booking-form .form-group {
         position: relative;
         margin-bottom: 30px;
     }
-
+ 
     .booking-form .form-control {
         background-color: rgba(255, 255, 255, 0.2);
         height: 60px;
@@ -79,52 +79,52 @@
         -webkit-transition: 0.2s;
         transition: 0.2s;
     }
-
+ 
     .booking-form .form-control::-webkit-input-placeholder {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form .form-control:-ms-input-placeholder {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form .form-control::placeholder {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form .form-control:focus {
         -webkit-box-shadow: 0px 0px 0px 2px #ff8846;
         box-shadow: 0px 0px 0px 2px #ff8846;
     }
-
+ 
     .booking-form input[type="date"].form-control {
         padding-top: 16px;
     }
-
+ 
     .booking-form input[type="date"].form-control:invalid {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form input[type="date"].form-control+.form-label {
         opacity: 1;
         top: 10px;
     }
-
+ 
     .booking-form input[type="number"].form-control+.form-label {
         opacity: 1;
         top: 10px;
     }
-
+ 
     .booking-form select.form-control {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
     }
-
+ 
     .booking-form select.form-control:invalid {
         color: rgba(255, 255, 255, 0.5);
     }
-
+ 
     .booking-form select.form-control+.select-arrow {
         position: absolute;
         right: 15px;
@@ -139,18 +139,18 @@
         color: rgba(255, 255, 255, 0.5);
         font-size: 14px;
     }
-
+ 
     .booking-form select.form-control+.select-arrow:after {
         content: '\279C';
         display: block;
         -webkit-transform: rotate(90deg);
         transform: rotate(90deg);
     }
-
+ 
     .booking-form select.form-control option {
         color: #000;
     }
-
+ 
     .booking-form .form-label {
         position: absolute;
         top: 10px;
@@ -166,16 +166,16 @@
         -webkit-transition: 0.2s all;
         transition: 0.2s all;
     }
-
+ 
     .booking-form .form-group.input-not-empty .form-control {
         padding-top: 16px;
     }
-
+ 
     .booking-form .form-group.input-not-empty .form-label .spot-input {
         opacity: 1;
         top: 10px;
     }
-
+ 
     .booking-form .submit-btn {
         color: #fff;
         background-color: #e35e0a;
@@ -191,7 +191,7 @@
         -webkit-transition: 0.2s all;
         transition: 0.2s all;
     }
-
+ 
     .booking-form .submit-btn:hover,
     .booking-form .submit-btn:focus {
         opacity: 0.9;
@@ -201,7 +201,7 @@
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
 <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
 <script type='text/javascript'></script>
-
+ 
 <body>
     <div id="booking" class="section">
         <div class="section-center">
@@ -219,7 +219,7 @@
                                         <span class="form-label">Worker Name</span>
                                     </div>
                                 </div>
-
+ 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="spot" id="spot" th:field="*{spot}" />
@@ -229,25 +229,20 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <input type="number" class="form-control" name="slot" id="slot" th:field="*{slot}">
-                                        <span class="form-label">Slot</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="number" class="form-control" name="hours" id="hours" th:field="*{hour}">
                                         <span class="form-label">Total Hours Worked</span>
                                     </div>
                                 </div>
+                                
+                                <div class="col-md-6">
+                                 <div class="form-group ">
+                                     <input type="number" class="form-control" name="rating" id="rating" th:field="*{rating}">
+                                     <span class="form-label">Rating</span>
+                                 </div>
+                             </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <input type="number" class="form-control" name="rating" id="rating" th:field="*{rating}">
-                                        <span class="form-label">Rating</span>
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="password" class="form-control" name="password" id="password" th:field="*{password}">
@@ -259,7 +254,7 @@
                                 <button class="submit-btn" id="submit-btn" >Add Worker</button>
                             </div>
                     </div>
-
+ 
                     </form>
                 </div>
             </div>
@@ -267,11 +262,11 @@
     </div>
     </div>
 </body>
-
-
-
+ 
+ 
+ 
 <script type="module">
-
+ 
         function maxHours() {
             var today1 = new Date()
             var hour_now = today1.getHours()
@@ -281,34 +276,34 @@
         }
     
     var select = document.getElementById('city');
-
+ 
     function AddItemsToTable(name, location) {
-
+ 
         let option = document.createElement('option');
-
+ 
         option.innerHTML = name + ", " + location;
-
-
+ 
+ 
         select.appendChild(option);
-
+ 
     }
-
+ 
     function AddAllItemsToTable(spots) {
-
+ 
         spots.forEach(element => {
             AddItemsToTable(element.name, element.location);
         })
     }
-
-
-
+ 
+ 
+ 
     import {
         initializeApp
     } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
     import {
         getAnalytics
     } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
-
+ 
     const firebaseConfig = {
         apiKey: "AIzaSyBTrQLmG73loEPd8Kg6uV4ZG01RnUdZ7rI",
         authDomain: "trial-6b9c1.firebaseapp.com",
@@ -319,11 +314,11 @@
         appId: "1:192488287455:web:9edc9a178b1ec23f578d6a",
         measurementId: "G-N4RJLP15EL"
     };
-
-
+ 
+ 
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
-
+ 
     import {
         getFirestore,
         doc,
@@ -332,44 +327,64 @@
         onSnapshot,
         collection
     } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
-
+ 
     const db = getFirestore();
-
-
+ 
+ 
     function GetAllDataRealTime() {
         const dbRef = collection(db, "Spots");
         var today = new Date().toISOString().split('T')[0];
         var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
         document.getElementsByName("date")[0].setAttribute('min', today);
         document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
-    
+ 
+        var select = document.getElementById('city');
+ 
+    function AddItemsToTable(name, location) {
+ 
+        let option = document.createElement('option');
+ 
+        option.innerHTML = name + ", " + location;
+ 
+ 
+        select.appendChild(option);
+ 
+    }
+ 
+    function AddAllItemsToTable(spots) {
+ 
+        spots.forEach(element => {
+            AddItemsToTable(element.name, element.location);
+        })
+    }
+ 
         // var today = new Date()
         // var min_hour = today.getHours()
         // var min_num = Number(min_hour)
         // document.getElementByName("time").setAttribute('min', min_num + 1)
         // document.getElementByName("time").setAttribute('max', 23)
         // alert('working')
-
+ 
         // var today1 = new Date()
         // var hour_now = today1.getHours()
         // hour_now = hour_now + 1
         // hour_max = 24 - hour_now
         // document.getElementByName("hours").setAttribute('max', hour_max)
-
-
+ 
+ 
             
         onSnapshot(dbRef, (querySnapshot) => {
             var spot = [];
-
+ 
             querySnapshot.forEach(doc => {
                 spot.push(doc.data());
             });
             AddAllItemsToTable(spot);
         })
         
-
+ 
     }
-
+ 
     document.getElementById('city').addEventListener('change', (e) => {
         // log(`e.target`, e.target);
         const select = e.target;
@@ -378,7 +393,7 @@
         // console.log(desc);
         sessionStorage.setItem('city', desc) ;
     });
-
+ 
     document.getElementById('car').addEventListener('change', (e) => {
         // log(`e.target`, e.target);
         const select = e.target;
@@ -387,23 +402,23 @@
         // console.log(desc);
         sessionStorage.setItem('car_type', desc) ;
     });
-
+ 
     
     var btn = document.getElementById('submit-btn');
-
+ 
     btn.addEventListener("click", function() {
         sessionStorage.setItem('date', document.getElementById("date").value) ;
         sessionStorage.setItem('time', document.getElementById("time").value) ;
         sessionStorage.setItem('hour', document.getElementById("hour").value) ;
     });
-
-
-
+ 
+ 
+ 
     window.onload = GetAllDataRealTime;
 </script>
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 </html>

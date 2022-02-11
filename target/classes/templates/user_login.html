@@ -165,7 +165,7 @@
   button.social-signin.google {
     background: #DD4B39;
   }
-
+ 
   .dur-rakho{
     margin-bottom: 20px;
     width: 220px;
@@ -182,13 +182,13 @@
   }
 </style>
 </head>
-
+ 
 <body>
   
 <!--<div id="login-box">
   <div class="left">
     <h1 id='status'>Sign up</h1>
-
+ 
     <input type="text" id="fname" name="fname" placeholder="first name">
     <input type="text" id="lname" name="fname" placeholder="last name">
     <input type="text" id="vehicleno" name="vehicleno" placeholder="vehicle number">
@@ -196,9 +196,9 @@
     <input type="text" id="email" name="email" placeholder="E-mail" />
     <input type="password" id="password" name="password" placeholder="Password" />
     <input type="submit" id='signUp' name="signup_submit" value="Sign up" />
-
+ 
   </div>-->
-
+ 
   <div id="login-box">
     <div class="left">
       <h1 id='status'>Login</h1>
@@ -215,17 +215,17 @@
     <button id='singUp' name="signUp" value="signUp" class="dur-rakho" onclick="location.href='/user_signup';">Sign Up</button>
     <button id="signinGoogle" class="social-signin google">Log in with Google+</button>
   </div>
-
+ 
   <div class="or">OR</div>
 </div>
 </body>
-
+ 
 <script type="module">
    // Import the functions you need from the SDKs you need
    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
     import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
     import { getAuth,signOut,getAdditionalUserInfo,onAuthStateChanged,signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword,GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
-
+ 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
@@ -253,7 +253,7 @@
     const database = getDatabase(app);
     const auth = getAuth();
     login.addEventListener('click', (e)=>{
-     sessionStorage.setItem("useremail", document.getElementById("email").value)
+      sessionStorage.setItem("useremail", document.getElementById("email").value)
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var xhr = new XMLHttpRequest();
@@ -283,13 +283,13 @@
       const errorMessage = error.message;
       alert("Wrong username or password");
     });
-
+ 
    
-
+ 
 // });
-
+ 
 });
-
+ 
 var googlebtn=document.getElementById("signinGoogle");
 const provider = new GoogleAuthProvider();
 googlebtn.addEventListener('click', (e)=>{
@@ -323,5 +323,5 @@ googlebtn.addEventListener('click', (e)=>{
   });
 })
   </script>
-
+ 
 </html>
